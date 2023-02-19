@@ -1,3 +1,4 @@
+import Navigation from '@/components/Navigation/Navigation';
 import Head from 'next/head';
 
 export default function Home() {
@@ -18,6 +19,9 @@ export default function Home() {
           href='/favicon.ico'
         />
       </Head>
+      <header>
+        <Navigation />
+      </header>
       <main className={''}></main>
     </>
   );
