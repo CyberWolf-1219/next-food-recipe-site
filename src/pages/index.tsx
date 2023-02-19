@@ -1,4 +1,7 @@
+import Container from '@/components/Container/Container';
+import HomeHeroSection from '@/components/HomeHeroSection/HomeHeroSection';
 import Navigation from '@/components/Navigation/Navigation';
+import PopularCategorySection from '@/components/PopularCategorySection/PopularCategorySection';
 import Head from 'next/head';
 
 export default function Home() {
@@ -22,7 +25,12 @@ export default function Home() {
       <header>
         <Navigation />
       </header>
-      <main className={''}></main>
+      <main className={''}>
+        <Container>
+          <HomeHeroSection />
+          <PopularCategorySection />
+        </Container>
+      </main>
     </>
   );
 }
