@@ -1,9 +1,9 @@
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
 import IconButton from '../IconButton/IconButton';
 import HeroSlide from '../HeroSlide/HeroSlide';
 import { nextButtonHandler } from './logic';
+import Container from '../Container/Container';
 
 type slidePositions = [number, number, number, number, number];
 
@@ -26,7 +26,7 @@ function HomeHeroSection() {
     <section className={`relative w-full h-fit`}>
       {/* SLIDE CONTAINER */}
       <div
-        className={`relative aspect-[1/1] w-screen h-auto flex flex-row bg-white`}
+        className={`relative aspect-[1/1] lg:aspect-[16/9] w-screen lg:w-full h-auto flex flex-row bg-white overflow-hidden`}
       >
         {/* SLIDE */}
         <HeroSlide

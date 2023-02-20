@@ -1,7 +1,17 @@
-.accordian_section[data-open='true']{
-    height: calc(calc(1em + .75em) * 4);
+.accordian_section[data-open='true'] {
+  height: calc(calc(1em + 0.75em) * 4);
 }
 
-.accordian_section[data-open='false']{
-    height: calc(calc(1em + .75em) * 0);
+.accordian_section[data-open='false'] {
+  height: calc(calc(1em + 0.75em) * 0);
+}
+
+@media screen and (min-width: 1024px) {
+  .accordian_section[data-open='true'] {
+    height: fit-content;
+  }
+
+  .accordian_section[data-open='false'] {
+    height: fit-content;
+  }
 }

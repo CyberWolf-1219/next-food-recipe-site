@@ -26,21 +26,21 @@ function Navigation() {
         <div className={`w-full h-fit`}>
           <div
             className={
-              'relative z-[10] w-full h-fit px-2 py-4 grid grid-cols-6 gap-4 bg-white'
+              'relative z-[10] w-full h-fit px-2 py-4 grid grid-cols-6 gap-4 lg:flex bg-white'
             }
           >
-            <IconButton classes={`col-start-1 col-end-2`}>
+            <IconButton classes={`lg:hidden col-start-1 col-end-2`}>
               <FaSearch
                 color={'var(--clr-secondary)'}
                 className={'aspect-[1/1] w-[2rem] md:w-[4rem] h-auto mx-auto'}
               />
             </IconButton>
 
-            <Logo classes={`mx-auto col-start-2 col-end-6`} />
+            <Logo classes={`max-w-[16rem] mx-auto col-start-2 col-end-6`} />
 
             <IconButton
               action={menuClickHandler}
-              classes={`col-start-6 col-end-7`}
+              classes={`lg:hidden col-start-6 col-end-7`}
             >
               <FaHamburger
                 color={'var(--clr-secondary)'}
@@ -49,7 +49,7 @@ function Navigation() {
             </IconButton>
           </div>
           <ul
-            className={`absolute top-20 bottom-0 left-0 right-0 w-auto h-fit p-4 flex flex-col items-start justify-start gap-2 bg-white border-2 font-semibold ${
+            className={`absolute md:static top-20 bottom-0 left-0 right-0 w-full h-fit p-4 flex flex-col lg:flex-row items-start lg:items-center justify-start lg:justify-center gap-2 lg:gap-8 bg-white bg-transparent  font-semibold lg:translate-y-0 ${
               navOpen ? 'translate-y-0' : 'translate-y-[-150%]'
             } transition-transform duration-500 transform-gpu`}
           >
@@ -68,9 +68,9 @@ function Navigation() {
                 </span>
               </div>
               <ul
-                className={`w-fit ${
+                className={`lg:absolute w-fit ${
                   recipeMenuOpen ? 'h-fit' : 'h-[0px]'
-                } pl-4 flex flex-col items-start justify-start gap-2 overflow-hidden transition-all duration-500`}
+                } pl-4 flex flex-col items-start justify-start gap-2 lg:bg-white overflow-hidden transition-all duration-500`}
               >
                 <li>
                   <Link href={'/recipes/categories'}>Categories</Link>

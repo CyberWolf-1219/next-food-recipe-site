@@ -37,13 +37,13 @@ function PopularCategorySection() {
   ]);
 
   return (
-    <section className={'px-2'}>
+    <section className={'px-2 lg:pb-[8rem]'}>
       <Container>
-        <div>
+        <div className={'w-full h-fit'}>
           <h2>Popular Categories</h2>
           <ul
             className={
-              'w-full h-fit grid grid-cols-3 md:grid-cols-4 auto-cols-min gap-4 items-center justify-items-center'
+              'w-full h-fit grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 auto-cols-min gap-4 items-center justify-items-center '
             }
           >
             {categories.map((categoryObj) => {

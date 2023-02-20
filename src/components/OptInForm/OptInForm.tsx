@@ -7,15 +7,17 @@ function OptInForm() {
     <form
       action=''
       method={'POST'}
-      className={'w-full h-fit py-[2rem] bg-accent/50'}
+      className={'w-full h-fit py-[2rem]'}
     >
-      <h2 className={'text-center'}>Deliciousness to your inbox.</h2>
+      <h2 className={'max-w-[8em] mx-auto text-center text-7xl'}>
+        Deliciousness to your inbox.
+      </h2>
       <p className={'text-center'}>
         Enjoy weekly handpicked recipes and recommendations.
       </p>
       <div
         className={
-          'w-[80%] h-fit mx-auto p-2 flex flex-row items-center justify-center gap-2 bg-white rounded-md'
+          'w-[80%] lg:w-[50%] h-fit mx-auto p-2 flex flex-row items-center justify-center gap-2 bg-white rounded-md'
         }
       >
         <span className={'aspect-[1/1] w-[2rem] h-auto'}>
@@ -30,11 +32,11 @@ function OptInForm() {
           id='user_email_input'
           placeholder={'Adde your email here...'}
           className={
-            'inline-block w-[80%] h-fit mx-auto p-0 font-base text-lg bg-transparent'
+            'inline-block w-full h-fit mx-auto p-0 font-base text-lg bg-transparent'
           }
         />
       </div>
-      <div className={'w-[80%] h-fit mx-auto mt-4'}>
+      <div className={'w-[80%] lg:w-[50%] h-fit mx-auto mt-4'}>
         <button
           className={
             'w-full h-fit px-[2em] py-[0.5em] mx-auto bg-accent font-semibold'

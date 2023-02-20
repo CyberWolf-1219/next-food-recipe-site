@@ -4,4 +4,15 @@
 
 .accordian_section[data-open=false] {
   height: 0em;
+}
+
+@media screen and (min-width: 1024px) {
+  .accordian_section[data-open=true] {
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .accordian_section[data-open=false] {
+    height: -moz-fit-content;
+    height: fit-content;
+  }
 }/*# sourceMappingURL=footerStyles.module.css.map */

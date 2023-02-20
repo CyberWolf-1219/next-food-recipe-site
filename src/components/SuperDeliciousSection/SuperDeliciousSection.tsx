@@ -64,14 +64,14 @@ function SuperDeliciousSection() {
   ]);
 
   return (
-    <section className={'px-4'}>
+    <section className={'px-4 lg:pb-[8rem]'}>
       <Container>
         <div>
           <h2>Super Delicious</h2>
         </div>
         <ul
           className={
-            'w-full h-fit grid gird-cols-1 md:grid-cols-3 auto-rows-fr gap-4'
+            'w-full h-fit grid gird-cols-1 md:grid-cols-3 lg:grid-cols-4 auto-rows-fr gap-4'
           }
         >
           {trendingRecipes.map((recipeObj) => {

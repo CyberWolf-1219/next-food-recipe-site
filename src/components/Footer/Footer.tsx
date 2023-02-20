@@ -28,28 +28,36 @@ function Footer() {
   }
 
   return (
-    <footer className={'w-full h-fit px-4 pt-8'}>
+    <footer className={'w-full h-fit px-4 pt-8 lg:pt-[8rem]'}>
       <Container>
-        <div>
-          <Logo classes={'max-w-[200px]'} />
-          <p className={'mt-4'}>
+        <div className={'w-full h-fit lg:grid grid-cols-12 auto-rows-auto'}>
+          <Logo
+            classes={
+              'col-start-1 col-end-5 w-full max-w-[200px] lg:max-w-[20rem]'
+            }
+          />
+          <p className={'col-start-1 col-end-5 mt-4'}>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit,
             aliquid magnam facere, veniam minus consequuntur voluptates
             assumenda fugiat, delectus qui sapiente eveniet consequatur!
             Voluptas quidem in obcaecati non debitis quod!
           </p>
-          <ul className={'flex flex-col gap-4'}>
-            <li>
+          <ul
+            className={
+              'col-start-7 col-end-13 row-start-1 row-end-3 flex flex-col lg:flex-row items-start justify-end gap-4'
+            }
+          >
+            <li className={'w-full h-fit lg:text-end'}>
               <div
                 onClick={(e) => {
                   accordianHandler(e, 0);
                 }}
                 className={
-                  'w-full h-fit flex flex-row items-center justify-between border-b-2'
+                  'w-full h-fit flex flex-row items-center justify-between border-b-2 lg:border-none'
                 }
               >
-                <b>Tastebite</b>
-                <span>
+                <b className={'lg:ml-auto'}>Tastebite</b>
+                <span className={'lg:hidden'}>
                   <FaCaretDown />
                 </span>
               </div>
@@ -63,17 +71,17 @@ function Footer() {
                 <li>Feedback</li>
               </ul>
             </li>
-            <li>
+            <li className={'w-full h-fit lg:text-end'}>
               <div
                 onClick={(e) => {
                   accordianHandler(e, 1);
                 }}
                 className={
-                  'w-full h-fit flex flex-row items-center justify-between border-b-2'
+                  'w-full h-fit flex flex-row items-center justify-between border-b-2 lg:border-none'
                 }
               >
-                <b>Legal</b>
-                <span>
+                <b className={'lg:ml-auto'}>Legal</b>
+                <span className={'lg:hidden'}>
                   <FaCaretDown />
                 </span>
               </div>
@@ -87,17 +95,17 @@ function Footer() {
                 <li>Copyright</li>
               </ul>
             </li>
-            <li>
+            <li className={'w-full h-fit lg:text-end'}>
               <div
                 onClick={(e) => {
                   accordianHandler(e, 2);
                 }}
                 className={
-                  'w-full h-fit flex flex-row items-center justify-between border-b-2'
+                  'w-full h-fit flex flex-row items-center justify-between border-b-2 lg:border-none'
                 }
               >
-                <b>Follow</b>
-                <span>
+                <b className={'lg:ml-auto'}>Follow</b>
+                <span className={'lg:hidden'}>
                   <FaCaretDown />
                 </span>
               </div>
@@ -112,11 +120,14 @@ function Footer() {
               </ul>
             </li>
           </ul>
-          <hr className={'mt-2 border-[2px]'} />
-          <p>
-            <span>&copy;</span>
-            <span>2020 Tastebite - All rights reserved</span>
-          </p>
+
+          <div className={'col-start-1 col-end-13 w-full h-fit'}>
+            <hr className={' w-full h-fit mt-2 border-[2px]'} />
+            <p className={'w-full h-fit'}>
+              <span>&copy;</span>
+              <span>2020 Tastebite - All rights reserved</span>
+            </p>
+          </div>
         </div>
       </Container>
     </footer>
