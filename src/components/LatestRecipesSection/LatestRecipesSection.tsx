@@ -70,7 +70,11 @@ function LatestRecipesSection() {
       <Container>
         <div>
           <h2>Latest Recipes</h2>
-          <ul className={'w-full h-fit grid grid-cols-1 auto-rows-auto gap-4'}>
+          <ul
+            className={
+              'w-full h-fit grid grid-cols-1 md:grid-cols-3 auto-rows-auto gap-4'
+            }
+          >
             {latestRecipes.map((recipeObj) => {
               return (
                 <li key={`latest_recipe_${Math.random()}`}>
