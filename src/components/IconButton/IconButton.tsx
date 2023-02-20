@@ -10,7 +10,7 @@ function IconButton(props: iIconButton) {
   return (
     <button
       onClick={props.action}
-      className={`aspect-[1/1] w-fit h-auto p-2 ${props.classes ?? null}`}
+      className={`inline-block w-full h-full p-2 ${props.classes ?? null}`}
     >
       {props.children}
     </button>
