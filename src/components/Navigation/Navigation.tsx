@@ -21,30 +21,34 @@ function Navigation() {
     setRecipeMenuOpen((prevState) => !prevState);
   }
   return (
-    <nav className={`px-2 py-4 bg-white shadow-md shadow-secondary/100`}>
+    <nav className={`relative z-[100] bg-white shadow-sm shadow-secondary/100`}>
       <Container>
-        <div
-          className={`w-full h-fit grid grid-cols-6 gap-4 items-stretch justify-items-stretch `}
-        >
-          <IconButton classes={`col-start-1 col-end-2`}>
-            <FaSearch
-              size={'2rem'}
-              color={'var(--clr-secondary)'}
-            />
-          </IconButton>
-          <Logo classes={`mx-auto col-start-2 col-end-6`} />
-
-          <IconButton
-            action={menuClickHandler}
-            classes={`col-start-6 col-end-7`}
+        <div className={`w-full h-fit`}>
+          <div
+            className={
+              'relative z-[10] w-full h-fit px-2 py-4 grid grid-cols-6 gap-4 items-stretch justify-items-stretch bg-white'
+            }
           >
-            <FaHamburger
-              size={'2rem'}
-              color={'var(--clr-secondary)'}
-            />
-          </IconButton>
+            <IconButton classes={`col-start-1 col-end-2`}>
+              <FaSearch
+                size={'2rem'}
+                color={'var(--clr-secondary)'}
+              />
+            </IconButton>
+            <Logo classes={`mx-auto col-start-2 col-end-6`} />
+
+            <IconButton
+              action={menuClickHandler}
+              classes={`col-start-6 col-end-7`}
+            >
+              <FaHamburger
+                size={'2rem'}
+                color={'var(--clr-secondary)'}
+              />
+            </IconButton>
+          </div>
           <ul
-            className={`absolute z-[-1] top-20 bottom-0 left-0 right-0 w-auto h-fit p-4 flex flex-col items-start justify-start gap-2 bg-white font-semibold ${
+            className={`absolute top-20 bottom-0 left-0 right-0 w-auto h-fit p-4 flex flex-col items-start justify-start gap-2 bg-white border-2 font-semibold ${
               navOpen ? 'translate-y-0' : 'translate-y-[-150%]'
             } transition-transform duration-500 transform-gpu`}
           >
