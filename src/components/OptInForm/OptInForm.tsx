@@ -9,7 +9,7 @@ function OptInForm() {
       method={'POST'}
       className={'w-full h-fit py-[2rem]'}
     >
-      <h2 className={'max-w-[8em] mx-auto text-center text-7xl'}>
+      <h2 className={'w-full max-w-[8em] mx-auto text-center lg:text-7xl'}>
         Deliciousness to your inbox.
       </h2>
       <p className={'text-center'}>
