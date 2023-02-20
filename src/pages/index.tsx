@@ -1,7 +1,11 @@
 import Container from '@/components/Container/Container';
+import Footer from '@/components/Footer/Footer';
 import HomeHeroSection from '@/components/HomeHeroSection/HomeHeroSection';
+import HomeOptInSection from '@/components/HomeOptInSection/HomeOptInSection';
+import LatestRecipesSection from '@/components/LatestRecipesSection/LatestRecipesSection';
 import Navigation from '@/components/Navigation/Navigation';
 import PopularCategorySection from '@/components/PopularCategorySection/PopularCategorySection';
+import SuperDeliciousSection from '@/components/SuperDeliciousSection/SuperDeliciousSection';
 import Head from 'next/head';
 
 export default function Home() {
@@ -26,10 +30,12 @@ export default function Home() {
         <Navigation />
       </header>
       <main className={''}>
-        <Container>
-          <HomeHeroSection />
-          <PopularCategorySection />
-        </Container>
+        <HomeHeroSection />
+        <PopularCategorySection />
+        <SuperDeliciousSection />
+        <LatestRecipesSection />
+        <HomeOptInSection />
+        <Footer />
       </main>
     </>
   );
