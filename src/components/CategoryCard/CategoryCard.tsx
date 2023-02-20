@@ -16,7 +16,7 @@ function CategoryCard(props: iCategoryCard) {
           'aspect-[1/1] w-full h-auto rounded-full border-2 object-center'
         }
       />
-      <p className={`font-semibold text-center`}>{props.category}</p>
+      <p className={`mb-0 font-semibold text-center`}>{props.category}</p>
     </div>
   );
 }
