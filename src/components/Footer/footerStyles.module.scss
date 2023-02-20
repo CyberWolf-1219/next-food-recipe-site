@@ -1,0 +1,7 @@
+.accordian_section[data-open='true']{
+    height: calc(calc(1em + .75em) * 4);
+}
+
+.accordian_section[data-open='false']{
+    height: calc(calc(1em + .75em) * 0);
+}

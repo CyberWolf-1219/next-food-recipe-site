@@ -1,0 +1,7 @@
+.accordian_section[data-open=true] {
+  height: 7em;
+}
+
+.accordian_section[data-open=false] {
+  height: 0em;
+}/*# sourceMappingURL=footerStyles.module.css.map */
