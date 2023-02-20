@@ -25,7 +25,7 @@ function HomeHeroSection() {
   }
 
   return (
-    <section className={`relative w-full h-fit border-2 border-red-500`}>
+    <section className={`relative w-full h-fit`}>
       {/* SLIDE CONTAINER */}
       <div
         className={`relative aspect-[1/1] w-screen h-auto flex flex-row bg-white`}
