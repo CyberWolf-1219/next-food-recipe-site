@@ -31,7 +31,7 @@ function Footer() {
     <footer className={'w-full h-fit px-4 pt-8'}>
       <Container>
         <div>
-          <Logo />
+          <Logo classes={'max-w-[200px]'} />
           <p className={'mt-4'}>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit,
             aliquid magnam facere, veniam minus consequuntur voluptates
