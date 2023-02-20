@@ -21,7 +21,7 @@ function RecipeCard(props: iRecipeCard) {
       }
     >
       {/* MAIN IMAGE */}
-      <div className={`relative aspect-[1/0.7] w-full h-auto overflow-hidden`}>
+      <div className={`relative aspect-[1/0.6] w-full h-auto overflow-hidden`}>
         <Image
           src={props.image}
           alt={''}
@@ -37,7 +37,7 @@ function RecipeCard(props: iRecipeCard) {
         {/* AUTHOR DETAILS */}
         <div
           className={
-            'w-fit h-fit mb-2 flex flex-row items-center justify-start gap-3'
+            'w-fit h-fit mb-4 flex flex-row items-center justify-start gap-3'
           }
         >
           <Avatar
@@ -51,12 +51,12 @@ function RecipeCard(props: iRecipeCard) {
         {/* POST DETAILS */}
         <div
           className={
-            'w-full h-fit mt-[3.7rem] flex flex-row items-center justify-between gap-4 font-semibold'
+            'w-full h-fit flex flex-row items-center justify-between md:justify-start gap-4 flex-wrap font-semibold'
           }
         >
           <span
             className={
-              'w-fit h-fit flex flex-row items-center justify-center gap-2'
+              'grow shrink md:basis-[45%] w-fit h-fit flex flex-row items-center justify-center gap-2'
             }
           >
             <span>
@@ -68,7 +68,7 @@ function RecipeCard(props: iRecipeCard) {
           </span>
           <span
             className={
-              'w-fit h-fit flex flex-row items-center justify-center gap-2'
+              'grow shrink md:basis-[45%] w-fit h-fit flex flex-row items-center justify-center gap-2'
             }
           >
             <span>
@@ -82,7 +82,7 @@ function RecipeCard(props: iRecipeCard) {
           </span>
           <span
             className={
-              'w-fit h-fit flex flex-row items-center justify-center gap-2'
+              'grow shrink md:basis-[50%] w-fit h-fit flex flex-row items-center justify-center gap-2'
             }
           >
             <span>
