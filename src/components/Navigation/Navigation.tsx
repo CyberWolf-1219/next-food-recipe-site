@@ -26,15 +26,16 @@ function Navigation() {
         <div className={`w-full h-fit`}>
           <div
             className={
-              'relative z-[10] w-full h-fit px-2 py-4 grid grid-cols-6 gap-4 items-stretch justify-items-stretch bg-white'
+              'relative z-[10] w-full h-fit px-2 py-4 grid grid-cols-6 gap-4 bg-white'
             }
           >
             <IconButton classes={`col-start-1 col-end-2`}>
               <FaSearch
-                size={'2rem'}
                 color={'var(--clr-secondary)'}
+                className={'aspect-[1/1] w-[2rem] md:w-[4rem] h-auto mx-auto'}
               />
             </IconButton>
+
             <Logo classes={`mx-auto col-start-2 col-end-6`} />
 
             <IconButton
@@ -42,8 +43,8 @@ function Navigation() {
               classes={`col-start-6 col-end-7`}
             >
               <FaHamburger
-                size={'2rem'}
                 color={'var(--clr-secondary)'}
+                className={'ascpect-[1/1] w-[2rem] md:w-[4rem] h-auto mx-auto'}
               />
             </IconButton>
           </div>
