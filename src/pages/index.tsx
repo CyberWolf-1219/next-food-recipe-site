@@ -35,8 +35,8 @@ export default function Home() {
         <SuperDeliciousSection />
         <LatestRecipesSection />
         <HomeOptInSection />
-        <Footer />
       </main>
+      <Footer />
     </>
   );
 }
