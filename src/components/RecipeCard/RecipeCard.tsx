@@ -17,7 +17,7 @@ function RecipeCard(props: iRecipeCard) {
   return (
     <article
       className={
-        'aspect-[1/1.3] w-full h-auto shadow-md rounded-md border-x-[1px] border-t-[1px] overflow-hidden'
+        'aspect-[1/1.2] lg:aspect-[1/1.3] w-full h-auto shadow-md rounded-md border-x-[1px] border-t-[1px] overflow-hidden'
       }
     >
       {/* MAIN IMAGE */}
@@ -56,7 +56,7 @@ function RecipeCard(props: iRecipeCard) {
         >
           <span
             className={
-              'grow shrink md:basis-[45%] w-fit h-fit flex flex-row items-center justify-center gap-2'
+              'grow shrink basis-[45%] w-fit h-fit flex flex-row items-center justify-center gap-2'
             }
           >
             <span>
@@ -68,7 +68,7 @@ function RecipeCard(props: iRecipeCard) {
           </span>
           <span
             className={
-              'grow shrink md:basis-[45%] w-fit h-fit flex flex-row items-center justify-center gap-2'
+              'grow shrink basis-[45%] w-fit h-fit flex flex-row items-center justify-center gap-2'
             }
           >
             <span>
@@ -82,7 +82,7 @@ function RecipeCard(props: iRecipeCard) {
           </span>
           <span
             className={
-              'grow shrink md:basis-[50%] w-fit h-fit flex flex-row items-center justify-center gap-2'
+              'grow shrink basis-[100%] w-fit h-fit flex flex-row items-center justify-center gap-2'
             }
           >
             <span>
