@@ -28,15 +28,15 @@ function Footer() {
   }
 
   return (
-    <footer className={'w-full h-fit px-4 pt-8 lg:pt-[8rem]'}>
+    <footer className={'w-full h-fit mt-auto px-4 pt-8 lg:pt-[8rem]'}>
       <Container>
         <div className={'w-full h-fit lg:grid grid-cols-12 auto-rows-auto'}>
           <Logo
             classes={
-              'col-start-1 col-end-5 w-full max-w-[200px] lg:max-w-[20rem]'
+              'col-start-1 col-end-6 w-full max-w-[200px] lg:max-w-[20rem]'
             }
           />
-          <p className={'col-start-1 col-end-5 mt-4'}>
+          <p className={'col-start-1 col-end-6 mt-4'}>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit,
             aliquid magnam facere, veniam minus consequuntur voluptates
             assumenda fugiat, delectus qui sapiente eveniet consequatur!
