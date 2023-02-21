@@ -56,29 +56,11 @@ function Navigation() {
             <li>
               <Link href={'/'}>Home</Link>
             </li>
-            <li onClick={onRecipeLinkClickHandler}>
-              <div className={`flex flex-row items-center justify-start gap-2`}>
-                <span className={`inline`}>Recipes</span>
-                <span className={`inline`}>
-                  {recipeMenuOpen ? (
-                    <FaCaretUp size={`1.2rem`} />
-                  ) : (
-                    <FaCaretDown size={`1.2rem`} />
-                  )}
-                </span>
-              </div>
-              <ul
-                className={`lg:absolute w-fit ${
-                  recipeMenuOpen ? 'h-fit' : 'h-[0px]'
-                } pl-4 flex flex-col items-start justify-start gap-2 lg:bg-white overflow-hidden transition-all duration-500`}
-              >
-                <li>
-                  <Link href={'/recipes/categories'}>Categories</Link>
-                </li>
-                <li>
-                  <Link href={'/recipes/search'}>Search</Link>
-                </li>
-              </ul>
+            <li>
+              <Link href={'/recipes/categories'}>Recipe Categories</Link>
+            </li>
+            <li>
+              <Link href={'/recipes/search'}>Search Recipes</Link>
             </li>
             <li>Blog</li>
             <li>About Us</li>
