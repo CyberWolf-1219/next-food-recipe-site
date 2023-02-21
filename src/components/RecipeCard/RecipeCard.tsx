@@ -17,7 +17,7 @@ function RecipeCard(props: iRecipeCard) {
   return (
     <article
       className={
-        'aspect-[1/1.2] lg:aspect-[1/1.3] w-full h-auto shadow-md rounded-md border-x-[1px] border-t-[1px] overflow-hidden'
+        'relative w-full h-fit shadow-sm shadow-black/50 rounded-lg border-x-[1px] border-t-[1px] overflow-hidden'
       }
     >
       {/* MAIN IMAGE */}
@@ -32,12 +32,18 @@ function RecipeCard(props: iRecipeCard) {
 
       {/* DETAILS */}
       <div className={'w-full h-fit p-2'}>
-        <h3>{props.name}</h3>
+        <h3
+          className={
+            'w-full max-w-full truncate sm:whitespace-normal text-[1.5rem] sm:text-[2rem]'
+          }
+        >
+          {props.name}
+        </h3>
 
         {/* AUTHOR DETAILS */}
         <div
           className={
-            'w-fit h-fit mb-4 flex flex-row items-center justify-start gap-3'
+            'w-fit h-fit mb-8 flex flex-row items-center justify-start gap-3'
           }
         >
           <Avatar
@@ -51,12 +57,12 @@ function RecipeCard(props: iRecipeCard) {
         {/* POST DETAILS */}
         <div
           className={
-            'w-full h-fit flex flex-row items-center justify-between md:justify-start gap-4 flex-wrap font-semibold'
+            'w-full max-w-full h-fit flex flex-row items-start sm:items-center justify-between flex-wrap font-semibold'
           }
         >
           <span
             className={
-              'grow shrink basis-[45%] w-fit h-fit flex flex-row items-center justify-center gap-2'
+              'grow basis-[30%] w-fit h-fit flex flex-row items-center justify-start gap-2'
             }
           >
             <span>
@@ -68,7 +74,7 @@ function RecipeCard(props: iRecipeCard) {
           </span>
           <span
             className={
-              'grow shrink basis-[45%] w-fit h-fit flex flex-row items-center justify-center gap-2'
+              'grow basis-[30%] w-fit h-fit flex flex-row items-center justify-start gap-2'
             }
           >
             <span>
@@ -82,13 +88,15 @@ function RecipeCard(props: iRecipeCard) {
           </span>
           <span
             className={
-              'grow shrink basis-[100%] w-fit h-fit flex flex-row items-center justify-center gap-2'
+              'grow basis-[30%] w-fit h-fit flex flex-row items-center justify-start gap-2'
             }
           >
             <span>
               <FaCalendarDay />
             </span>
-            <span>{new Date(props.createdDate).toDateString()}</span>
+            <span>
+              {new Date(props.createdDate).toLocaleDateString('en-us')}
+            </span>
           </span>
         </div>
       </div>
