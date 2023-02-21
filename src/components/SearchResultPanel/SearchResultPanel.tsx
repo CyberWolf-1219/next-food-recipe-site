@@ -18,13 +18,13 @@ interface iSearchResultPanel {
 
 function SearchResultPanel(props: iSearchResultPanel) {
   return (
-    <section className={'px-4'}>
+    <section className={'w-full min-h-screen px-4'}>
       <Container>
         <div>
           <h2>Recipes</h2>
           <ul
             className={
-              'w-full h-fit grid grid-cols-1 md:grid-cols-3 lg:md:grid-cols-4 auto-rows-fr gap-4'
+              'w-full h-fit grid grid-cols-1 sm:grid-cols-2 lg:md:grid-cols-3 auto-rows-fr gap-4'
             }
           >
             {props.resultsArray.map((resultObj) => {
