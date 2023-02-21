@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 
 const AvatarSizeOptions = {
-  sm: 'w-[2.5rem]',
+  sm: 'w-[2rem]',
   md: 'w-[5rem]',
   lg: 'w-[6.5rem]',
   xl: 'w-[8rem]',
@@ -18,8 +18,7 @@ function Avatar(props: iAvatar) {
     <div
       className={`relative aspect-[1/1] ${
         AvatarSizeOptions[props.size]
-      } h-auto rounded-full border-2`}
-    >
+      } h-auto rounded-full border-2`}>
       <Image
         src={props.image}
         alt={'user avatar'}
