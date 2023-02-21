@@ -18,8 +18,7 @@ function RecipeCard(props: iRecipeCard) {
     <article
       className={
         'relative w-full h-fit shadow-sm shadow-black/50 rounded-lg border-x-[1px] border-t-[1px] overflow-hidden'
-      }
-    >
+      }>
       {/* MAIN IMAGE */}
       <div className={`relative aspect-[1/0.6] w-full h-auto overflow-hidden`}>
         <Image
@@ -34,9 +33,8 @@ function RecipeCard(props: iRecipeCard) {
       <div className={'w-full h-fit p-2'}>
         <h3
           className={
-            'w-full max-w-full truncate sm:whitespace-normal text-[1.5rem] sm:text-[2rem]'
-          }
-        >
+            'w-full max-w-full mt-0 mb-2 truncate sm:whitespace-normal text-[1.5rem] sm:text-[2rem]'
+          }>
           {props.name}
         </h3>
 
@@ -44,13 +42,11 @@ function RecipeCard(props: iRecipeCard) {
         <div
           className={
             'w-fit h-fit mb-8 flex flex-row items-center justify-start gap-3'
-          }
-        >
+          }>
           <Avatar
             image={''}
             size={'sm'}
           />
-          <em>Author: </em>
           <span>{props.authorName}</span>
         </div>
 
@@ -58,13 +54,11 @@ function RecipeCard(props: iRecipeCard) {
         <div
           className={
             'w-full max-w-full h-fit flex flex-row items-start sm:items-center justify-between flex-wrap font-semibold'
-          }
-        >
+          }>
           <span
             className={
               'grow basis-[30%] w-fit h-fit flex flex-row items-center justify-start gap-2'
-            }
-          >
+            }>
             <span>
               <FaThumbsUp />
             </span>
@@ -75,8 +69,7 @@ function RecipeCard(props: iRecipeCard) {
           <span
             className={
               'grow basis-[30%] w-fit h-fit flex flex-row items-center justify-start gap-2'
-            }
-          >
+            }>
             <span>
               <FaCommentAlt />
             </span>
@@ -89,8 +82,7 @@ function RecipeCard(props: iRecipeCard) {
           <span
             className={
               'grow basis-[30%] w-fit h-fit flex flex-row items-center justify-start gap-2'
-            }
-          >
+            }>
             <span>
               <FaCalendarDay />
             </span>
