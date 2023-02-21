@@ -4,7 +4,7 @@ import Navigation from '@/components/Navigation/Navigation';
 import Head from 'next/head';
 import React from 'react';
 
-function categories() {
+function Categories() {
   return (
     <>
       <Head>
@@ -40,4 +40,4 @@ function categories() {
   );
 }
 
-export default categories;
+export default Categories;
