@@ -64,7 +64,9 @@ function Navigation() {
               <Link href={'/recipes/search'}>Search</Link>
             </li>
             <li>Blog</li>
-            <li>About Us</li>
+            <li>
+              <Link href={'/about'}>About Us</Link>
+            </li>
           </ul>
         </div>
       </Container>
