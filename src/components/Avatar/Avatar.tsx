@@ -4,7 +4,8 @@ import React from 'react';
 const AvatarSizeOptions = {
   sm: 'w-[2.5rem]',
   md: 'w-[5rem]',
-  lg: 'w-[7.5rem]',
+  lg: 'w-[6.5rem]',
+  xl: 'w-[8rem]',
 };
 
 interface iAvatar {
