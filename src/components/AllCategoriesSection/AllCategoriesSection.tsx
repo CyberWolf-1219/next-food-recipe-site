@@ -25,7 +25,11 @@ function AllCategoriesSection() {
       <Container>
         <div>
           <h2>Categories</h2>
-          <ul className={'w-full h-fit grid grid-cols-3 auto-rows-fr gap-4'}>
+          <ul
+            className={
+              'w-full h-fit grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 auto-rows-fr gap-4'
+            }
+          >
             {categories.map((categoryObj) => {
               return (
                 <li
