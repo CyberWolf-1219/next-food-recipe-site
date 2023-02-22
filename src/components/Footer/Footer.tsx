@@ -29,6 +29,7 @@ function Footer() {
 
   return (
     <footer className={'w-full h-fit mt-auto px-4 pt-8 lg:pt-[8rem]'}>
+      <hr />
       <Container>
         <div className={'w-full h-fit lg:grid grid-cols-12 auto-rows-auto'}>
           <Logo
@@ -45,8 +46,7 @@ function Footer() {
           <ul
             className={
               'col-start-7 col-end-13 row-start-1 row-end-3 flex flex-col lg:flex-row items-start justify-end gap-4'
-            }
-          >
+            }>
             <li className={'w-full h-fit lg:text-end'}>
               <div
                 onClick={(e) => {
@@ -54,8 +54,7 @@ function Footer() {
                 }}
                 className={
                   'w-full h-fit flex flex-row items-center justify-between border-b-2 lg:border-none'
-                }
-              >
+                }>
                 <b className={'lg:ml-auto'}>Tastebite</b>
                 <span className={'lg:hidden'}>
                   <FaCaretDown />
@@ -63,8 +62,7 @@ function Footer() {
               </div>
               <ul
                 data-open={isOpen[0]}
-                className={`${styleClasses.accordian_section} overflow-hidden transition-all duraiton-500`}
-              >
+                className={`${styleClasses.accordian_section} overflow-hidden transition-all duraiton-500`}>
                 <li>About Us</li>
                 <li>Careers</li>
                 <li>Contact Us</li>
@@ -78,8 +76,7 @@ function Footer() {
                 }}
                 className={
                   'w-full h-fit flex flex-row items-center justify-between border-b-2 lg:border-none'
-                }
-              >
+                }>
                 <b className={'lg:ml-auto'}>Legal</b>
                 <span className={'lg:hidden'}>
                   <FaCaretDown />
@@ -87,8 +84,7 @@ function Footer() {
               </div>
               <ul
                 data-open={isOpen[1]}
-                className={`${styleClasses.accordian_section} overflow-hidden transition-all duraiton-500`}
-              >
+                className={`${styleClasses.accordian_section} overflow-hidden transition-all duraiton-500`}>
                 <li>Terms</li>
                 <li>Conditions</li>
                 <li>Cookies</li>
@@ -102,8 +98,7 @@ function Footer() {
                 }}
                 className={
                   'w-full h-fit flex flex-row items-center justify-between border-b-2 lg:border-none'
-                }
-              >
+                }>
                 <b className={'lg:ml-auto'}>Follow</b>
                 <span className={'lg:hidden'}>
                   <FaCaretDown />
@@ -111,8 +106,7 @@ function Footer() {
               </div>
               <ul
                 data-open={isOpen[2]}
-                className={`${styleClasses.accordian_section} overflow-hidden transition-all duraiton-500`}
-              >
+                className={`${styleClasses.accordian_section} overflow-hidden transition-all duraiton-500`}>
                 <li>Facebook</li>
                 <li>Twitter</li>
                 <li>Instagram</li>
