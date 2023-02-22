@@ -71,9 +71,8 @@ function SuperDeliciousSection() {
         </div>
         <ul
           className={
-            'w-full h-fit grid gird-cols-1 md:grid-cols-3 lg:grid-cols-4 auto-rows-fr gap-4'
-          }
-        >
+            'w-full h-fit grid gird-cols-1 md:grid-cols-3 lg:grid-cols-3 auto-rows-fr gap-4'
+          }>
           {trendingRecipes.map((recipeObj) => {
             return (
               <li key={`trending_recipe_${Math.random()}`}>
