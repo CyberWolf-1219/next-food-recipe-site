@@ -33,7 +33,7 @@ function RecipeCard(props: iRecipeCard) {
         src={props.image}
         alt={''}
         className={
-          'aspect-[1/0.7] w-full h-auto rounded-t-lg shadow-[0px_5px_6px_-1px] shadow-black/30 object-cover'
+          'aspect-[1/0.7] w-full h-auto rounded-t-lg shadow-md shadow-accent/30 object-cover'
         }
       />
 
@@ -41,12 +41,12 @@ function RecipeCard(props: iRecipeCard) {
 
       <div className={'w-full h-fit p-2'}>
         {/* HEADING */}
-        <h4
+        <h3
           className={
             'w-full max-w-full mt-0 mb-2 truncate sm:whitespace-normal text-[1.5rem] sm:text-[2rem]'
           }>
           {props.name}
-        </h4>
+        </h3>
 
         {/* AUTHOR DETAILS */}
         <p className={'w-fit h-fit'}>{props.authorName}</p>
@@ -85,11 +85,11 @@ function RecipeCard(props: iRecipeCard) {
           porro itaque! Reiciendis doloribus magnam eos nostrum nulla velit
           inventore voluptatem odio quo similique.
         </p>
-        <hr />
+        <hr className={''} />
         {/* ACTIONS */}
         <IconButton
           classes={
-            'flex flex-row items-center justify-center gap-2 my-2 shadow-md shadow-accent/40 bg-accent/80 rounded-md text-white'
+            'flex flex-row items-center justify-center gap-2 my-2 shadow-md shadow-accent/40 bg-accent rounded-md text-white'
           }>
           <GiCook size={'1.2rem'} /> View Recipe
         </IconButton>
