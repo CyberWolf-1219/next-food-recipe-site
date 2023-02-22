@@ -6,14 +6,15 @@ const widthOptions = {
 };
 
 const heightOptions = {
-  full: 'w-full',
-  fit: 'w-fit',
+  full: 'h-full',
+  fit: 'h-fit',
 };
 
 interface iIconButton {
   children: ReactNode | ReactNode[];
   width?: keyof typeof widthOptions;
   height?: keyof typeof heightOptions;
+  disabled?: boolean;
   action?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   classes?: string;
 }
@@ -24,8 +25,10 @@ function IconButton(props: iIconButton) {
       onClick={props.action}
       className={`inline-block ${widthOptions[props.width ?? 'full']} ${
         heightOptions[props.height ?? 'fit']
-      } p-2 ${props.classes ?? null}`}
-    >
+      } px-3 py-2 rounded-md disabled:bg-gray-300 disabled:text-gray-400 disabled:shadow-transparent ${
+        props.classes ?? null
+      }`}
+      disabled={props.disabled ?? false}>
       {props.children}
     </button>
   );
