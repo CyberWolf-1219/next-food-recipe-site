@@ -1,7 +1,16 @@
 import Image from 'next/image';
 import React from 'react';
-import Avatar from '../Avatar/Avatar';
-import { FaCalendarDay, FaCommentAlt, FaThumbsUp } from 'react-icons/fa';
+import {
+  FaCalendarDay,
+  FaClock,
+  FaCommentAlt,
+  FaList,
+  FaThumbsUp,
+  FaUser,
+} from 'react-icons/fa';
+import { GiCook } from 'react-icons/gi';
+
+import IconButton from '../IconButton/IconButton';
 
 interface iRecipeCard {
   image: string;
@@ -20,36 +29,71 @@ function RecipeCard(props: iRecipeCard) {
         'relative w-full h-fit shadow-sm shadow-black/50 rounded-lg border-x-[1px] border-t-[1px] overflow-hidden'
       }>
       {/* MAIN IMAGE */}
-      <div className={`relative aspect-[1/0.6] w-full h-auto overflow-hidden`}>
-        <Image
-          src={props.image}
-          alt={''}
-          fill={true}
-          className={'object-cover'}
-        />
-      </div>
+      <Image
+        src={props.image}
+        alt={''}
+        className={
+          'aspect-[1/0.7] w-full h-auto rounded-t-lg shadow-[0px_5px_6px_-1px] shadow-black/30 object-cover'
+        }
+      />
 
       {/* DETAILS */}
+
       <div className={'w-full h-fit p-2'}>
-        <h3
+        {/* HEADING */}
+        <h4
           className={
             'w-full max-w-full mt-0 mb-2 truncate sm:whitespace-normal text-[1.5rem] sm:text-[2rem]'
           }>
           {props.name}
-        </h3>
+        </h4>
 
         {/* AUTHOR DETAILS */}
-        <div
-          className={
-            'w-fit h-fit mb-8 flex flex-row items-center justify-start gap-3'
-          }>
-          <Avatar
-            image={''}
-            size={'sm'}
-          />
-          <span>{props.authorName}</span>
-        </div>
+        <p className={'w-fit h-fit'}>{props.authorName}</p>
+        <hr />
 
+        {/* RECIPE DETAILS */}
+        <ul
+          className={
+            'w-full h-fit my-4 flex flex-row items-center justify-between'
+          }>
+          <li className={'w-fit h-fit flex flex-col items-start justify-start'}>
+            <span className={'w-fit h-fit flex flex-row items-center gap-1'}>
+              <FaClock /> 12
+            </span>
+            <span>Minutes</span>
+          </li>
+          <li className={'w-fit h-fit flex flex-col items-start justify-start'}>
+            <span className={'w-fit h-fit flex flex-row items-center gap-1'}>
+              <FaList /> 8
+            </span>
+            <span>Ingredients</span>
+          </li>
+          <li className={'w-fit h-fit flex flex-col items-start justify-start'}>
+            <span className={'w-fit h-fit flex flex-row items-center gap-1'}>
+              <FaUser /> 4
+            </span>
+            <span>Servings</span>
+          </li>
+        </ul>
+        <hr />
+
+        {/* DESCRIPTION */}
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit
+          exercitationem repellat consequuntur magni voluptatum totam accusamus
+          porro itaque! Reiciendis doloribus magnam eos nostrum nulla velit
+          inventore voluptatem odio quo similique.
+        </p>
+        <hr />
+        {/* ACTIONS */}
+        <IconButton
+          classes={
+            'flex flex-row items-center justify-center gap-2 my-2 shadow-md shadow-accent/40 bg-accent/80 rounded-md text-white'
+          }>
+          <GiCook size={'1.2rem'} /> View Recipe
+        </IconButton>
+        <hr />
         {/* POST DETAILS */}
         <div
           className={
