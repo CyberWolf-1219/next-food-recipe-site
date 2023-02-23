@@ -17,7 +17,7 @@ module.exports = {
     extend: {
       colors: {
         primary: 'hsl(0, 0%, 98%)',
-        secondary: 'hsl(0, 0%, 0%)',
+        secondary: 'hsl(27, 20%, 0%)',
         accent: 'hsl(15, 100%, 59%)',
       },
     },
