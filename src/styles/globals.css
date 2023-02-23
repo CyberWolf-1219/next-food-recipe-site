@@ -6,7 +6,7 @@
 
 :root {
   --clr-primary: hsl(0, 0%, 98%);
-  --clr-secondary: hsl(0, 0%, 0%);
+  --clr-secondary: hsl(30, 4%, 9%);
   --clr-accent: hsl(15, 100%, 59%);
   --max-width: 1440px;
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
