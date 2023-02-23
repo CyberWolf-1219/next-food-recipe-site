@@ -17,15 +17,12 @@ function Navigation() {
 
   return (
     <nav
-      className={`relative z-[100] w-full h-fit bg-white shadow-sm shadow-secondary/50`}
-    >
+      className={`relative z-[100] w-full h-fit bg-white shadow-sm shadow-secondary/50`}>
       <Container>
         <div
-          className={`w-full h-fit lg:flex flex-row items-center justify-between`}
-        >
+          className={`w-full h-fit lg:flex flex-row items-center justify-between`}>
           <div
-            className={`z-[50] w-full h-fit py-2 flex flex-row items-center justify-between md:justify-center lg:justify-start bg-white`}
-          >
+            className={`z-[50] w-full h-fit py-2 flex flex-row items-center justify-between md:justify-center lg:justify-start bg-white`}>
             {/* <IconButton classes={`lg:hidden`}>
             <FaSearch
               color={'var(--clr-secondary)'}
@@ -41,8 +38,7 @@ function Navigation() {
               action={menuClickHandler}
               width={'fit'}
               height={'fit'}
-              classes={`md:hidden`}
-            >
+              classes={`md:hidden`}>
               <FaHamburger
                 color={'var(--clr-secondary)'}
                 className={'ascpect-[1/1] w-[2rem] md:w-[4rem] h-auto mx-auto'}
@@ -52,13 +48,12 @@ function Navigation() {
           <ul
             className={`absolute md:static top-[4rem] bottom-0 left-0 right-0 w-full h-fit p-4 flex flex-col md:flex-row items-start lg:items-center justify-start md:justify-center lg:justify-end gap-8 bg-white bg-transparent font-semibold md:translate-y-0 ${
               navOpen ? 'translate-y-0' : 'translate-y-[-150%]'
-            } transition-transform duration-500 transform-gpu`}
-          >
+            } transition-transform duration-500 transform-gpu`}>
             <li>
               <Link href={'/'}>Home</Link>
             </li>
             <li>
-              <Link href={'/recipes/categories'}>Categories</Link>
+              <Link href={'/categories'}>Categories</Link>
             </li>
             <li>
               <Link href={'/recipes/search'}>Search</Link>
