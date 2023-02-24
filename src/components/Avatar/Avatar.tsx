@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
 
+import { FaUserCircle } from 'react-icons/fa';
+
 const AvatarSizeOptions = {
   sm: 'w-[1.5rem]',
   md: 'w-[3rem]',
@@ -14,18 +16,22 @@ interface iAvatar {
   classes?: string;
 }
 
-function Avatar(props: iAvatar) {
+function Avatar({ image, size, classes }: iAvatar) {
   return (
     <div
       className={`relative aspect-[1/1] ${
-        AvatarSizeOptions[props.size]
-      } h-auto rounded-full border-2 ${props.classes ?? null}`}>
-      <Image
-        src={props.image}
-        alt={'user avatar'}
-        fill={true}
-        className={'rounded-full object-center'}
-      />
+        AvatarSizeOptions[size]
+      } h-auto rounded-full border-2 ${classes ?? null}`}>
+      {image ? (
+        <Image
+          src={image}
+          alt={'user avatar'}
+          fill={true}
+          className={'rounded-full object-center'}
+        />
+      ) : (
+        <FaUserCircle className={'w-full h-full'} />
+      )}
     </div>
   );
 }
