@@ -3,16 +3,23 @@ import { FaArrowRight } from 'react-icons/fa';
 import IconButton from '../IconButton/IconButton';
 import HeroSlide from '../HeroSlide/HeroSlide';
 import { nextButtonHandler } from './logic';
-import Container from '../Container/Container';
+import { ResponseRecipeObject } from '@/Types/RecipeApiTypes';
+import CustomeFetch from '@/utility/Fetch';
 
 type slidePositions = [number, number, number, number, number];
 
 function HomeHeroSection() {
+  const [slides, setSlides] = useState<Array<ResponseRecipeObject>>([]);
   const [slidePositions, setSlidePositions] = useState<slidePositions>([
     1, 2, 3, 4, 5,
   ]);
 
   useEffect(() => {
+    (async () => {
+      const result = await CustomeFetch('/api/recipe/getTrendingRecipes', {});
+      setSlides(result);
+    })();
+
     const intervalId = setInterval(() => {
       nextButtonHandler(setSlidePositions);
     }, 5000);
@@ -26,37 +33,26 @@ function HomeHeroSection() {
     <section className={`relative w-full h-fit`}>
       {/* SLIDE CONTAINER */}
       <div
-        className={`relative aspect-[1/1] lg:aspect-[16/9] w-screen lg:w-full h-auto flex flex-row bg-white overflow-hidden`}
-      >
+        className={`relative aspect-[1/1] lg:aspect-[16/9] w-screen lg:w-full h-auto flex flex-row bg-white overflow-hidden`}>
         {/* SLIDE */}
-        <HeroSlide
-          heading={'01'}
-          position={slidePositions[0].toString()}
-        />
-        <HeroSlide
-          heading={'02'}
-          position={slidePositions[1].toString()}
-        />
-        <HeroSlide
-          heading={'03'}
-          position={slidePositions[2].toString()}
-        />
-        <HeroSlide
-          heading={'04'}
-          position={slidePositions[3].toString()}
-        />
-        <HeroSlide
-          heading={'05'}
-          position={slidePositions[4].toString()}
-        />
+
+        {slides.map((recipeObject, index) => {
+          return (
+            <HeroSlide
+              key={`hero_slide_${Math.random()}`}
+              image={recipeObject.recipe.image}
+              heading={recipeObject.recipe.label}
+              position={slidePositions[index].toString()}
+            />
+          );
+        })}
       </div>
       {/* CONTROLS */}
       <div className={'absolute z-[5]  bottom-0 right-0'}>
         <IconButton
           action={(e) => {
             nextButtonHandler(setSlidePositions, e);
-          }}
-        >
+          }}>
           <FaArrowRight size={'2rem'} />
         </IconButton>
       </div>

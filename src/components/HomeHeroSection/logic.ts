@@ -6,7 +6,6 @@ export function decreaseSlidePositions(
   const newPositionsArray = positions.map((val) => {
     return val == 1 ? 5 : val - 1;
   });
-  console.log(positions, newPositionsArray);
   return newPositionsArray as slidePositions;
 }
 
