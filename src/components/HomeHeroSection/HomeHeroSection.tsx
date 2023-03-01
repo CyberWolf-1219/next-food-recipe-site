@@ -11,7 +11,7 @@ function HomeHeroSection() {
   const slides = useRef<Array<HTMLDivElement>>([]);
 
   useEffect(() => {
-    execute('/api/recipe/trending', {});
+    execute('/api/recipes/trending_recipes', {});
   }, [execute]);
 
   useEffect(() => {
