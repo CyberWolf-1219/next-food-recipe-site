@@ -15,7 +15,7 @@ function CategoryCard(props: iCategoryCard) {
           alt={''}
           fill={true}
           className={
-            'w-full h-full rounded-full border-2 border-accent/80 object-cover object-center'
+            'w-full h-full rounded-full border-[4px] border-accent/80 object-cover object-center'
           }
         />
       </div>
