@@ -1,18 +1,9 @@
-type slidePositions = [number, number, number, number, number];
-
-export function decreaseSlidePositions(
-  positions: slidePositions
-): slidePositions {
-  const newPositionsArray = positions.map((val) => {
-    return val == 1 ? 5 : val - 1;
+export function changeSlidePosition(slides: Array<HTMLDivElement>) {
+  slides.map((slide) => {
+    const currentSlidePosition = parseInt(slide.getAttribute('data-position')!);
+    slide.setAttribute(
+      'data-position',
+      (currentSlidePosition === 1 ? 5 : currentSlidePosition - 1).toString()
+    );
   });
-  return newPositionsArray as slidePositions;
-}
-
-export function nextButtonHandler(
-  dispatcher: React.Dispatch<React.SetStateAction<slidePositions>>,
-  e?: React.MouseEvent<HTMLButtonElement>
-) {
-  e?.preventDefault();
-  dispatcher(decreaseSlidePositions);
 }

@@ -1,27 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import IconButton from '../IconButton/IconButton';
 import HeroSlide from '../HeroSlide/HeroSlide';
-import { nextButtonHandler } from './logic';
-import { ResponseRecipeObject } from '@/Types/RecipeApiTypes';
-import CustomeFetch from '@/utility/Fetch';
-
-type slidePositions = [number, number, number, number, number];
+import { changeSlidePosition } from './logic';
+import useFetch from '@/hooks/useFetch';
+import Container from '../Container/Container';
 
 function HomeHeroSection() {
-  const [slides, setSlides] = useState<Array<ResponseRecipeObject>>([]);
-  const [slidePositions, setSlidePositions] = useState<slidePositions>([
-    1, 2, 3, 4, 5,
-  ]);
+  const [execute, result] = useFetch();
+  const slides = useRef<Array<HTMLDivElement>>([]);
 
   useEffect(() => {
-    (async () => {
-      const result = await CustomeFetch('/api/recipe/getTrendingRecipes', {});
-      setSlides(result);
-    })();
+    execute('/api/recipe/trending', {});
+  }, [execute]);
 
+  useEffect(() => {
     const intervalId = setInterval(() => {
-      nextButtonHandler(setSlidePositions);
+      changeSlidePosition(slides.current);
     }, 5000);
 
     return () => {
@@ -29,33 +24,47 @@ function HomeHeroSection() {
     };
   }, []);
 
+  function nextButtonHandler() {
+    changeSlidePosition(slides.current);
+  }
+
   return (
     <section className={`relative w-full h-fit`}>
-      {/* SLIDE CONTAINER */}
-      <div
-        className={`relative aspect-[1/1] lg:aspect-[16/9] w-screen lg:w-full h-auto flex flex-row bg-white overflow-hidden`}>
-        {/* SLIDE */}
+      <Container relative={true}>
+        {/* SLIDE CONTAINER */}
+        <div
+          className={`relative aspect-[1/1] lg:aspect-[3/1.5] w-screen lg:w-full h-auto flex flex-row bg-white overflow-hidden`}>
+          {/* SLIDE */}
 
-        {slides.map((recipeObject, index) => {
-          return (
-            <HeroSlide
-              key={`hero_slide_${Math.random()}`}
-              image={recipeObject.recipe.image}
-              heading={recipeObject.recipe.label}
-              position={slidePositions[index].toString()}
+          {(result as { recipes: Array<Recipe> })?.recipes.map(
+            (recipeObject, index) => {
+              return (
+                <HeroSlide
+                  key={`hero_slide_${Math.random()}`}
+                  image={recipeObject.strMealThumb}
+                  heading={recipeObject.strMeal}
+                  position={(index + 1).toString()}
+                  slideRefHolder={slides.current}
+                />
+              );
+            }
+          )}
+        </div>
+        {/* CONTROLS */}
+        <div className={'absolute z-[5]  bottom-0 right-0'}>
+          <IconButton
+            action={(e) => {
+              nextButtonHandler();
+            }}>
+            <FaArrowRight
+              size={'2rem'}
+              className={
+                'aspect-[1/1] w-fit h-auto p-3 fill-white rounded-full bg-accent'
+              }
             />
-          );
-        })}
-      </div>
-      {/* CONTROLS */}
-      <div className={'absolute z-[5]  bottom-0 right-0'}>
-        <IconButton
-          action={(e) => {
-            nextButtonHandler(setSlidePositions, e);
-          }}>
-          <FaArrowRight size={'2rem'} />
-        </IconButton>
-      </div>
+          </IconButton>
+        </div>
+      </Container>
     </section>
   );
 }
