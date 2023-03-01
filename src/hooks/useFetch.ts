@@ -1,21 +1,14 @@
-import { Recipe } from '@/Types/RecipeApiTypes';
-import { useState, useEffect } from 'react';
+import { useState, useRef, useCallback } from 'react';
 
-export default function useFetch(url: string, options: RequestInit) {
-  const [result, setResult] = useState<Array<Recipe>>([]);
+export default function useFetch() {
+  const [result, setResult] = useState<any>();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await fetch(url, options);
-        const jsonObject = await response.json();
-        console.log(jsonObject);
-        setResult(jsonObject);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
+  const execute = useCallback(async (url: string, options: RequestInit) => {
+    console.log('FETCHING...');
+    const response = await fetch(url, options);
+    const jsonResult = await response.json();
+    setResult(jsonResult);
   }, []);
 
-  return result;
+  return [execute, result] as const;
 }
