@@ -1,32 +1,21 @@
-import {
-  RecipeApiResponse,
-  RecipeRequestParameters,
-} from '@/Types/RecipeApiTypes';
-import objectToUri from '@/utility/ObjectToUri';
+const ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/random.php';
 
-export default async function getTrendingRecipes(endpoint: string) {
-  const parameters: RecipeRequestParameters = {
-    beta: false,
-    type: 'public',
-    random: true,
-    imageSize: 'LARGE',
-    field: ['image', 'label', 'url'],
-    diet: ['balanced'],
-  };
-
-  const encodedParameters = objectToUri(parameters);
-  const finalURI = endpoint + encodedParameters;
-  console.log('ENCODED URL: ', finalURI);
-
+export default async function getTrendingRecipes() {
   const requestConfig: RequestInit = {
     method: 'GET',
+    mode: 'cors',
   };
 
+  const recipes: Array<Recipe> = [];
+
   try {
-    const response = await fetch(finalURI, requestConfig);
-    const jsonObject: RecipeApiResponse = await response.json();
-    return jsonObject.hits.slice(0, 5);
+    for (let i = 0; i < 5; i++) {
+      const response = await fetch(ENDPOINT, requestConfig);
+      const result: RandomRecipeResponse = await response.json();
+      recipes.push(result.meals[0]);
+    }
+    return recipes;
   } catch (error) {
-    return error;
+    console.log(error);
   }
 }

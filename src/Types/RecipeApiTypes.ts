@@ -1,198 +1,59 @@
-type Diet =
-  | 'balanced'
-  | 'high-fiber'
-  | 'high-protien'
-  | 'low-carb'
-  | 'low-fat'
-  | 'low-sodium';
-
-type Health =
-  | 'alcohol-cocktail'
-  | 'alcohol-free'
-  | 'celery-free'
-  | 'crustacean-free'
-  | 'dairy-free'
-  | 'DASH'
-  | 'egg-free'
-  | 'fish-free'
-  | 'fodmap-free'
-  | 'gluten-free'
-  | 'immuno-supportive'
-  | 'keto-friendly'
-  | 'kidney-friendly'
-  | 'kosher'
-  | 'lob-fat-abs'
-  | 'low-potassium'
-  | 'low-sugar'
-  | 'lupine-free'
-  | 'Mediterranean'
-  | 'mollusk-free'
-  | 'mustard-free'
-  | 'no-oil-added'
-  | 'paleo'
-  | 'peanut-free'
-  | 'pecatarian'
-  | 'pork-free'
-  | 'red-meat-free'
-  | 'sesame-free'
-  | 'shellfish-free'
-  | 'soy-free'
-  | 'sugar-conscious'
-  | 'sulfite-free'
-  | 'tree-nut-free'
-  | 'vegan'
-  | 'vegetarian'
-  | 'wheat-free';
-
-type MealType = 'Breakfast' | 'Lunch' | 'Dinner' | 'Snack' | 'Teatime';
-
-type DishType =
-  | 'Biscuits and cookies'
-  | 'Bread'
-  | 'Cereals'
-  | 'Condiments and sauces'
-  | 'Desserts'
-  | 'Drinks'
-  | 'Main course'
-  | 'Pancake'
-  | 'Preps'
-  | 'Preserve'
-  | 'Salad'
-  | 'Sandwiches'
-  | 'Side dish'
-  | 'Soup'
-  | 'Starter'
-  | 'Sweets';
-
-type ImageSize = 'LARGE' | 'REGULAR' | 'SMALL';
-
-type Field =
-  | 'uri'
-  | 'label'
-  | 'image'
-  | 'images'
-  | 'source'
-  | 'url'
-  | 'shareAs'
-  | 'yield'
-  | 'dietLabels'
-  | 'healthLabels'
-  | 'cautions'
-  | 'ingredientLines'
-  | 'ingredients'
-  | 'calories'
-  | 'glycemicIndex'
-  | 'totalCO2Emissions'
-  | 'co2EmissionsClass'
-  | 'totalWeight'
-  | 'totalTime'
-  | 'cuisineType'
-  | 'mealType'
-  | 'dishType'
-  | 'totalNutrients'
-  | 'totalDaily'
-  | 'digest'
-  | 'tags';
-
-export type RecipeRequestParameters = {
-  type: 'public';
-  beta: false;
-  q?: string;
-  ingr?: string;
-  diet?: Array<Diet>;
-  health?: Array<Health>;
-  mealType?: Array<MealType>;
-  dishType?: Array<DishType>;
-  calories?: string;
-  time?: string;
-  imageSize?: ImageSize;
-  random?: boolean;
-  field?: Array<Field>;
+type Recipe = {
+  idMeal: string;
+  strMeal: string;
+  strDrinkAlternate: null;
+  strCategory: string;
+  strArea: string;
+  strInstructions: string;
+  strMealThumb: string;
+  strTags: string;
+  strYoutube: string;
+  strIngredient1: string;
+  strIngredient2: string;
+  strIngredient3: string;
+  strIngredient4: string;
+  strIngredient5: string;
+  strIngredient6: string;
+  strIngredient7: string;
+  strIngredient8: string;
+  strIngredient9: string;
+  strIngredient10: string;
+  strIngredient11: string;
+  strIngredient12: string;
+  strIngredient13: string;
+  strIngredient14: string;
+  strIngredient15: string;
+  strIngredient16: string;
+  strIngredient17: string;
+  strIngredient18: string;
+  strIngredient19: string;
+  strIngredient20: string;
+  strMeasure1: string;
+  strMeasure2: string;
+  strMeasure3: string;
+  strMeasure4: string;
+  strMeasure5: string;
+  strMeasure6: string;
+  strMeasure7: string;
+  strMeasure8: string;
+  strMeasure9: string;
+  strMeasure10: string;
+  strMeasure11: string;
+  strMeasure12: string;
+  strMeasure13: string;
+  strMeasure14: string;
+  strMeasure15: string;
+  strMeasure16: string;
+  strMeasure17: string;
+  strMeasure18: string;
+  strMeasure19: string;
+  strMeasure20: string;
+  strSource: string;
+  strImageSource: null;
+  strCreativeCommonsConfirmed: null;
+  dateModified: null;
 };
 
-type Link = {
-  href: string;
-  title: string;
-};
-
-type ImageInfo = {
-  url: string;
-  width: number;
-  height: number;
-};
-
-type Ingredient = {
-  text: string;
-  quantity: number;
-  measure: string;
-  food: string;
-  weight: number;
-  foodId: string;
-};
-
-type CO2EmmissionClass = 'A+' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G';
-
-type DigestEntry = {
-  label: string;
-  tag: string;
-  schemaOrgTag: string;
-  total: number;
-  hasRDI: true;
-  daily: number;
-  unit: string;
-  sub: {};
-};
-
-export type Recipe = {
-  uri: string;
-  label: string;
-  image: string;
-  images: {
-    THUMBNAIL: ImageInfo;
-    SMALL: ImageInfo;
-    REGULAR: ImageInfo;
-    LARGE: ImageInfo;
-  };
-  source: string;
-  url: string;
-  shareAs: string;
-  yield: number;
-  dietLabels: Array<string>;
-  healthLabels: Array<string>;
-  cautions: Array<string>;
-  ingredientLines: Array<string>;
-  ingredients: Array<Ingredient>;
-  calories: number;
-  glycemicIndex: number;
-  totalCO2Emissions: number;
-  co2EmissionsClass: CO2EmmissionClass;
-  totalWeight: number;
-  cuisineType: Array<string>;
-  mealType: Array<string>;
-  dishType: Array<string>;
-  instructions: Array<string>;
-  tags: Array<string>;
-  externalId: string;
-  totalNutrients: {};
-  totalDaily: {};
-  digest: Array<DigestEntry>;
-};
-
-export type ResponseRecipeObject = {
-  recipe: Recipe;
-  _links: {
-    self?: Link;
-    next?: Link;
-  };
-};
-
-export type RecipeApiResponse = {
-  from: number;
-  to: number;
-  count: number;
-  _links: {
-    self?: Link;
-    next?: Link;
-  };
-  hits: Array<ResponseRecipeObject>;
+type RandomRecipeResponse = {
+  meals: Array<Recipe>;
 };
