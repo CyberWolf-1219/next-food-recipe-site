@@ -57,3 +57,13 @@ type Recipe = {
 type RandomRecipeResponse = {
   meals: Array<Recipe>;
 };
+
+type Category = {
+  idCategory: string;
+  strCategory: string;
+  strCategoryThumb: string;
+};
+
+type CategoriesResponse = {
+  categories: Array<Category>;
+};
