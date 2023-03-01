@@ -1,69 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import Container from '../Container/Container';
 import RecipeCard from '../RecipeCard/RecipeCard';
 import Link from 'next/link';
-
-type LatestRecipe = {
-  image: string;
-  name: string;
-  createdDate: number;
-  likes: number;
-  comments: number;
-  authorName: string;
-  authorImage: string;
-};
-
-const dummyVals: Array<LatestRecipe> = [
-  {
-    image: '',
-    name: 'Butter Blueberry Buns',
-    createdDate: Date.now(),
-    likes: 50,
-    comments: 0,
-    authorName: 'Amy Wang',
-    authorImage: '',
-  },
-  {
-    image: '',
-    name: 'Butter Blueberry Buns',
-    createdDate: Date.now(),
-    likes: 50,
-    comments: 0,
-    authorName: 'Amy Wang',
-    authorImage: '',
-  },
-  {
-    image: '',
-    name: 'Butter Blueberry Buns',
-    createdDate: Date.now(),
-    likes: 50,
-    comments: 0,
-    authorName: 'Amy Wang',
-    authorImage: '',
-  },
-  {
-    image: '',
-    name: 'Butter Blueberry Buns',
-    createdDate: Date.now(),
-    likes: 50,
-    comments: 0,
-    authorName: 'Amy Wang',
-    authorImage: '',
-  },
-  {
-    image: '',
-    name: 'Butter Blueberry Buns',
-    createdDate: Date.now(),
-    likes: 50,
-    comments: 0,
-    authorName: 'Amy Wang',
-    authorImage: '',
-  },
-];
+import useFetch from '@/hooks/useFetch';
 
 function LatestRecipesSection() {
-  const [latestRecipes, setLatestRecipes] =
-    useState<Array<LatestRecipe>>(dummyVals);
+  const [execute, result] = useFetch();
+
+  useEffect(() => {
+    execute('/api/recipes/latest_recipes', {});
+  }, [execute]);
 
   return (
     <section className={`px-4 lg:pb-[8rem]`}>
@@ -74,23 +20,23 @@ function LatestRecipesSection() {
             className={
               'w-full h-fit grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 auto-rows-auto gap-4'
             }>
-            {latestRecipes.map((recipeObj) => {
-              return (
-                <li key={`latest_recipe_${Math.random()}`}>
-                  <Link href={'#'}>
-                    <RecipeCard
-                      image={recipeObj.image}
-                      name={recipeObj.name}
-                      likes={recipeObj.likes}
-                      comments={recipeObj.comments}
-                      createdDate={recipeObj.createdDate}
-                      authorName={recipeObj.authorName}
-                      authorImage={recipeObj.authorImage}
-                    />
-                  </Link>
-                </li>
-              );
-            })}
+            {(result as { recipes: Array<Recipe> })?.recipes.map(
+              (recipeObj) => {
+                return (
+                  <li key={`latest_recipe_${Math.random()}`}>
+                    <Link href={'#'}>
+                      <RecipeCard
+                        image={recipeObj.strMealThumb}
+                        name={recipeObj.strMeal}
+                        likes={500000}
+                        comments={580000}
+                        createdDate={Date.now()}
+                      />
+                    </Link>
+                  </li>
+                );
+              }
+            )}
           </ul>
         </div>
       </Container>
