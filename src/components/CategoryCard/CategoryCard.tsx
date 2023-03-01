@@ -8,14 +8,17 @@ interface iCategoryCard {
 
 function CategoryCard(props: iCategoryCard) {
   return (
-    <div className={`relative w-full h-fit`}>
-      <Image
-        src={props.image ?? ''}
-        alt={''}
-        className={
-          'aspect-[1/1] w-full h-auto rounded-full border-2 object-center'
-        }
-      />
+    <div className={`relative aspect-[1/1] w-full h-auto`}>
+      <div className={'relative w-full h-full'}>
+        <Image
+          src={props.image ?? ''}
+          alt={''}
+          fill={true}
+          className={
+            'w-full h-full rounded-full border-2 border-accent/80 object-cover object-center'
+          }
+        />
+      </div>
       <p className={`mb-0 font-semibold text-center`}>{props.category}</p>
     </div>
   );

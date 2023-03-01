@@ -18,8 +18,8 @@ interface iRecipeCard {
   likes: number;
   comments: number;
   createdDate: number;
-  authorName: string;
-  authorImage: string;
+  authorName?: string;
+  authorImage?: string;
 }
 
 function RecipeCard(props: iRecipeCard) {
@@ -29,31 +29,34 @@ function RecipeCard(props: iRecipeCard) {
         'relative w-full h-fit shadow-sm shadow-black/50 rounded-lg border-x-[1px] border-t-[1px] overflow-hidden'
       }>
       {/* MAIN IMAGE */}
-      <Image
-        src={props.image}
-        alt={''}
+      <div
         className={
-          'aspect-[1/0.7] w-full h-auto rounded-t-lg shadow-md shadow-accent/30 object-cover'
-        }
-      />
-
+          'relative aspect-[1/0.7] w-full h-auto rounded-t-lg shadow-md shadow-accent/30 object-cover'
+        }>
+        <Image
+          src={props.image}
+          alt={''}
+          fill={true}
+          className={'w-full h-full'}
+        />
+      </div>
       {/* DETAILS */}
 
       <div className={'w-full h-fit p-2'}>
         {/* HEADING */}
         <h3
           className={
-            'w-full max-w-full mt-0 mb-2 truncate sm:whitespace-normal text-[1.5rem] sm:text-[2rem]'
+            'w-full max-w-full min-h-[2.75em] mt-0 mb-2 truncate sm:whitespace-normal text-[1.5rem] sm:text-[2rem]'
           }>
           {props.name}
         </h3>
 
         {/* AUTHOR DETAILS */}
-        <p className={'w-fit h-fit'}>{props.authorName}</p>
-        <hr />
+        {/* <p className={'w-fit h-fit'}>{props.authorName}</p> */}
+        {/* <hr /> */}
 
         {/* RECIPE DETAILS */}
-        <ul
+        {/* <ul
           className={
             'w-full h-fit my-4 flex flex-row items-center justify-between'
           }>
@@ -76,15 +79,15 @@ function RecipeCard(props: iRecipeCard) {
             <span>Servings</span>
           </li>
         </ul>
-        <hr />
+        <hr /> */}
 
         {/* DESCRIPTION */}
-        <p>
+        {/* <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit
           exercitationem repellat consequuntur magni voluptatum totam accusamus
           porro itaque! Reiciendis doloribus magnam eos nostrum nulla velit
           inventore voluptatem odio quo similique.
-        </p>
+        </p> */}
         <hr className={''} />
         {/* ACTIONS */}
         <IconButton
