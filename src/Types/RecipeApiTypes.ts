@@ -76,3 +76,9 @@ type RecipeSearchResponse = {
 type CategoryRecipesResponse = {
   meals: Array<Recipe>;
 };
+
+type RecipeDetailResponse = {
+  meals: Array<Recipe>;
+};
+
+type Ingredient = { ingredient: string; amount: string };
