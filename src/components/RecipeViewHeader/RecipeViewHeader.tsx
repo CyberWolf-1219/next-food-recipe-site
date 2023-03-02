@@ -4,7 +4,11 @@ import IconButton from '../IconButton/IconButton';
 import Avatar from '../Avatar/Avatar';
 import { FaCalendarDay, FaComment, FaDownload, FaHeart } from 'react-icons/fa';
 
-function RecipeViewHeader() {
+interface iRecipeViewHeader {
+  recipeName: string;
+}
+
+function RecipeViewHeader(props: iRecipeViewHeader) {
   return (
     <section
       className={
@@ -15,10 +19,10 @@ function RecipeViewHeader() {
           className={
             'w-full h-fit grid grid-cols-6 lg:grid-cols-12 auto-rows-auto gap-4'
           }>
-          <h1 className={'col-start-1 col-end-7 lg:col-end-13 w-full h-fit '}>
-            Recipe Name Goes Here...
+          <h1 className={'col-start-1 col-end-7 lg:col-end-11 w-full h-fit'}>
+            {props.recipeName}
           </h1>
-          <ul
+          {/* <ul
             className={
               'col-start-1 col-end-5 w-full h-full flex flex-row items-center justify-between gap-4 font-semibold text-xs'
             }>
@@ -47,7 +51,7 @@ function RecipeViewHeader() {
               <FaComment />
               100
             </li>
-          </ul>
+          </ul> */}
           <IconButton
             classes={
               'col-start-5 col-end-6 lg:col-start-11 lg:col-end-12 w-full h-full flex flex-row items-center justify-center'

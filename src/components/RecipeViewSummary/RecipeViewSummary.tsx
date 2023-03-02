@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Container from '../Container/Container';
 import IconButton from '../IconButton/IconButton';
 import { FaPrint } from 'react-icons/fa';
+import extractYoutubeVideoID from '@/utility/extractYoutubeVideoID';
 
-function RecipeViewSummary() {
+interface iRecipeViewSummary {
+  videoLink: string;
+}
+
+function RecipeViewSummary(props: iRecipeViewSummary) {
+  const [url, setUrl] = useState('');
+
+  useEffect(() => {
+    const videoID = extractYoutubeVideoID(props.videoLink);
+    setUrl(`https://www.youtube.com/embed/${videoID}`);
+  }, [props.videoLink]);
+
   return (
     <section
       className={'md:col-start-1 md:col-end-7 lg:col-end-13 w-full h-fit px-4'}>
@@ -16,14 +28,19 @@ function RecipeViewSummary() {
             placeat nisi? Explicabo sapiente possimus a magnam neque tempora
             iste iure placeat voluptates!
           </p>
-          <Image
+          <embed
+            src={url}
+            type='video/mp4'
+            className={'aspect-[4/3] lg:aspect-[16/8] w-full h-auto mt-8'}
+          />
+          {/* <Image
             src={''}
             alt={''}
             className={
               'aspect-[4/3] lg:aspect-[16/8] w-full h-auto mt-8 rounded-lg overflow-hidden border-2'
             }
-          />
-          <ul
+          /> */}
+          {/* <ul
             className={
               'w-full h-fit md:max-w-[50%] mt-8 flex flex-row items-center justify-between'
             }>
@@ -55,7 +72,7 @@ function RecipeViewSummary() {
                 />
               </IconButton>
             </li>
-          </ul>
+          </ul> */}
         </div>
       </Container>
     </section>

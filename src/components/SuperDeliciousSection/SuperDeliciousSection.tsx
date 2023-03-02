@@ -24,6 +24,7 @@ function SuperDeliciousSection() {
             return (
               <li key={`trending_recipe_${Math.random()}`}>
                 <RecipeCard
+                  id={recipeObj.idMeal}
                   image={recipeObj.strMealThumb}
                   name={recipeObj.strMeal}
                   likes={500000}

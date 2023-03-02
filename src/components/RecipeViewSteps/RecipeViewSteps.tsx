@@ -1,7 +1,11 @@
 import React from 'react';
 import Container from '../Container/Container';
 
-function RecipeViewSteps() {
+interface iRecipeViewSteps {
+  steps: Array<string>;
+}
+
+function RecipeViewSteps(props: iRecipeViewSteps) {
   return (
     <section
       className={
@@ -9,16 +13,13 @@ function RecipeViewSteps() {
       }>
       <Container>
         <h2>Steps</h2>
-        <ol>
-          {[...Array(7)].map((_, index) => {
+        <ol className={'list-decimal'}>
+          {props.steps.map((step, index) => {
             return (
               <li
                 key={`step_${Math.random()}`}
                 data-index={index}>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Nihil, temporibus.
-                </p>
+                <p>{step}</p>
               </li>
             );
           })}
