@@ -15,9 +15,9 @@ import IconButton from '../IconButton/IconButton';
 interface iRecipeCard {
   image: string;
   name: string;
-  likes: number;
-  comments: number;
-  createdDate: number;
+  likes?: number;
+  comments?: number;
+  createdDate?: number;
   authorName?: string;
   authorImage?: string;
 }
@@ -46,7 +46,7 @@ function RecipeCard(props: iRecipeCard) {
         {/* HEADING */}
         <h3
           className={
-            'w-full max-w-full min-h-[2.75em] mt-0 mb-2 truncate sm:whitespace-normal text-[1.5rem] sm:text-[2rem]'
+            'w-full max-w-full min-h-[.75em] h-fit mt-0 mb-2 truncate text-[1.5rem] sm:text-[2rem]'
           }>
           {props.name}
         </h3>
@@ -102,7 +102,8 @@ function RecipeCard(props: iRecipeCard) {
           className={
             'w-full max-w-full h-fit flex flex-row items-start sm:items-center justify-between flex-wrap font-semibold'
           }>
-          <span
+          {/* LIKES */}
+          {/* <span
             className={
               'grow basis-[30%] w-fit h-fit flex flex-row items-center justify-start gap-2'
             }>
@@ -112,8 +113,9 @@ function RecipeCard(props: iRecipeCard) {
             <span>
               {props.likes > 999 ? `${props.likes / 1000}K` : props.likes}
             </span>
-          </span>
-          <span
+          </span> */}
+          {/* COMMENTS */}
+          {/* <span
             className={
               'grow basis-[30%] w-fit h-fit flex flex-row items-center justify-start gap-2'
             }>
@@ -125,8 +127,9 @@ function RecipeCard(props: iRecipeCard) {
                 ? `${props.comments / 1000}K`
                 : props.comments}
             </span>
-          </span>
-          <span
+          </span> */}
+          {/* CREATED DATE */}
+          {/* <span
             className={
               'grow basis-[30%] w-fit h-fit flex flex-row items-center justify-start gap-2'
             }>
@@ -136,7 +139,7 @@ function RecipeCard(props: iRecipeCard) {
             <span>
               {new Date(props.createdDate).toLocaleDateString('en-us')}
             </span>
-          </span>
+          </span> */}
         </div>
       </div>
     </article>

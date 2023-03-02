@@ -6,17 +6,22 @@ import { clearSearchInput, searchbarHandler } from './logic';
 
 interface iSearchPanel {
   searchFunction: (searchTerm: string) => void;
+  resultCount: number;
 }
 
-function SearchPanel({ searchFunction }: iSearchPanel) {
+function SearchPanel({ searchFunction, resultCount }: iSearchPanel) {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const searchInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     console.log('SETTING TIMEOUT...');
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       searchFunction(searchTerm);
     }, 1000);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [searchTerm, searchFunction]);
 
   return (
@@ -27,8 +32,7 @@ function SearchPanel({ searchFunction }: iSearchPanel) {
           <div
             className={
               'w-full max-w-full h-fit flex flex-row items-center justify-between gap-2 border-b-2 border-black'
-            }
-          >
+            }>
             <input
               ref={searchInput}
               type='text'
@@ -45,16 +49,14 @@ function SearchPanel({ searchFunction }: iSearchPanel) {
             <span
               className={
                 'grow-0 shrink-0 inline-block w-fit h-full font-base text-sm text-center'
-              }
-            >
-              (###)
+              }>
+              ({resultCount.toString().padStart(3, '0')})
             </span>
             <IconButton
               width={'fit'}
               action={(e) => {
                 clearSearchInput(searchInput.current!, e);
-              }}
-            >
+              }}>
               <FaBackspace
                 size={'1.5rem'}
                 className={'mx-auto'}

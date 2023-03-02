@@ -67,3 +67,7 @@ type Category = {
 type CategoriesResponse = {
   categories: Array<Category>;
 };
+
+type RecipeSearchResponse = {
+  meals: Array<Recipe>;
+};

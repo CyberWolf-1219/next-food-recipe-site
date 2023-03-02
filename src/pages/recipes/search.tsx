@@ -1,122 +1,21 @@
-import React, { useState } from 'react';
+import React, { useCallback } from 'react';
 
 import Footer from '@/components/Footer/Footer';
 import Navigation from '@/components/Navigation/Navigation';
 import SearchPanel from '@/components/SearchPanel/SearchPanel';
 import SearchResultPanel from '@/components/SearchResultPanel/SearchResultPanel';
 import Head from 'next/head';
-
-type SearchResult = {
-  image: string;
-  name: string;
-  likes: number;
-  comments: number;
-  createdDate: number;
-  authorImage: string;
-  authorName: string;
-};
-
-const resultArray = [
-  {
-    image: '',
-    name: `Some Food Recipe ###`,
-    likes: 1000000,
-    comments: 50000,
-    createdDate: Date.now(),
-    authorImage: '',
-    authorName: 'Its a Meee!',
-  },
-  {
-    image: '',
-    name: `Some Food Recipe ###`,
-    likes: 1000000,
-    comments: 50000,
-    createdDate: Date.now(),
-    authorImage: '',
-    authorName: 'Its a Meee!',
-  },
-  {
-    image: '',
-    name: `Some Food Recipe ###`,
-    likes: 1000000,
-    comments: 50000,
-    createdDate: Date.now(),
-    authorImage: '',
-    authorName: 'Its a Meee!',
-  },
-  {
-    image: '',
-    name: `Some Food Recipe ###`,
-    likes: 1000000,
-    comments: 50000,
-    createdDate: Date.now(),
-    authorImage: '',
-    authorName: 'Its a Meee!',
-  },
-  {
-    image: '',
-    name: `Some Food Recipe ###`,
-    likes: 1000000,
-    comments: 50000,
-    createdDate: Date.now(),
-    authorImage: '',
-    authorName: 'Its a Meee!',
-  },
-  {
-    image: '',
-    name: `Some Food Recipe ###`,
-    likes: 1000000,
-    comments: 50000,
-    createdDate: Date.now(),
-    authorImage: '',
-    authorName: 'Its a Meee!',
-  },
-  {
-    image: '',
-    name: `Some Food Recipe ###`,
-    likes: 1000000,
-    comments: 50000,
-    createdDate: Date.now(),
-    authorImage: '',
-    authorName: 'Its a Meee!',
-  },
-  {
-    image: '',
-    name: `Some Food Recipe ###`,
-    likes: 1000000,
-    comments: 50000,
-    createdDate: Date.now(),
-    authorImage: '',
-    authorName: 'Its a Meee!',
-  },
-  {
-    image: '',
-    name: `Some Food Recipe ###`,
-    likes: 1000000,
-    comments: 50000,
-    createdDate: Date.now(),
-    authorImage: '',
-    authorName: 'Its a Meee!',
-  },
-  {
-    image: '',
-    name: `Some Food Recipe ###`,
-    likes: 1000000,
-    comments: 50000,
-    createdDate: Date.now(),
-    authorImage: '',
-    authorName: 'Its a Meee!',
-  },
-];
+import useFetch from '@/hooks/useFetch';
 
 function Search() {
-  const [searchResult, setSearchResult] = useState<Array<SearchResult>>([]);
+  const [execute, result] = useFetch();
 
-  function search(searchTerm: string) {
-    setTimeout(() => {
-      setSearchResult(resultArray);
-    }, 3000);
-  }
+  const search = useCallback(
+    (query: string) => {
+      execute(`/api/recipes/search?q=${query}`, {});
+    },
+    [execute]
+  );
 
   return (
     <>
@@ -146,8 +45,15 @@ function Search() {
         <Navigation />
       </header>
       <main>
-        <SearchPanel searchFunction={search} />
-        <SearchResultPanel resultsArray={searchResult} />
+        <SearchPanel
+          searchFunction={search}
+          resultCount={
+            (result as { recipes: Array<Recipe> })?.recipes?.length ?? 0
+          }
+        />
+        <SearchResultPanel
+          resultsArray={(result as { recipes: Array<Recipe> })?.recipes ?? []}
+        />
       </main>
       <Footer />
     </>

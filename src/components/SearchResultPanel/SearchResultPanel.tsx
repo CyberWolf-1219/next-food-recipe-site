@@ -2,18 +2,8 @@ import React from 'react';
 import Container from '../Container/Container';
 import RecipeCard from '../RecipeCard/RecipeCard';
 
-type SearchResult = {
-  image: string;
-  name: string;
-  likes: number;
-  comments: number;
-  createdDate: number;
-  authorImage: string;
-  authorName: string;
-};
-
 interface iSearchResultPanel {
-  resultsArray: Array<SearchResult>;
+  resultsArray: Array<Recipe>;
 }
 
 function SearchResultPanel(props: iSearchResultPanel) {
@@ -25,19 +15,18 @@ function SearchResultPanel(props: iSearchResultPanel) {
           <ul
             className={
               'w-full h-fit grid grid-cols-1 sm:grid-cols-2 lg:md:grid-cols-3 auto-rows-fr gap-4'
-            }
-          >
+            }>
             {props.resultsArray.map((resultObj) => {
               return (
                 <li key={`search_recipe_${Math.random()}`}>
                   <RecipeCard
-                    image={resultObj.image}
-                    name={resultObj.name}
-                    likes={resultObj.likes}
-                    comments={resultObj.comments}
-                    createdDate={resultObj.createdDate}
-                    authorImage={resultObj.image}
-                    authorName={resultObj.authorName}
+                    image={resultObj.strMealThumb}
+                    name={resultObj.strMeal}
+                    // likes={resultObj.likes}
+                    // comments={resultObj.comments}
+                    // createdDate={resultObj.createdDate}
+                    // authorImage={resultObj.image}
+                    // authorName={resultObj.authorName}
                   />
                 </li>
               );
