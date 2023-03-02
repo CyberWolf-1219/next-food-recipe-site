@@ -11,8 +11,10 @@ import {
 import { GiCook } from 'react-icons/gi';
 
 import IconButton from '../IconButton/IconButton';
+import { useRouter } from 'next/router';
 
 interface iRecipeCard {
+  id: string;
   image: string;
   name: string;
   likes?: number;
@@ -23,6 +25,12 @@ interface iRecipeCard {
 }
 
 function RecipeCard(props: iRecipeCard) {
+  const router = useRouter();
+
+  function viewRecipe() {
+    router.replace(`/recipes/${props.id}`);
+  }
+
   return (
     <article
       className={
@@ -91,6 +99,7 @@ function RecipeCard(props: iRecipeCard) {
         <hr className={''} />
         {/* ACTIONS */}
         <IconButton
+          action={viewRecipe}
           classes={
             'flex flex-row items-center justify-center gap-2 my-2 shadow-md shadow-accent/40 bg-accent rounded-md text-white'
           }>
