@@ -62,6 +62,7 @@ type Category = {
   idCategory: string;
   strCategory: string;
   strCategoryThumb: string;
+  strCategoryDescription?: string;
 };
 
 type CategoriesResponse = {
@@ -69,5 +70,9 @@ type CategoriesResponse = {
 };
 
 type RecipeSearchResponse = {
+  meals: Array<Recipe>;
+};
+
+type CategoryRecipesResponse = {
   meals: Array<Recipe>;
 };
