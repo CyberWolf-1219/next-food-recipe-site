@@ -1,10 +1,14 @@
+import React from 'react';
+import Image from 'next/image';
+import Head from 'next/head';
+
 import Avatar from '@/components/Avatar/Avatar';
 import Container from '@/components/Container/Container';
 import Footer from '@/components/Footer/Footer';
 import Navigation from '@/components/Navigation/Navigation';
-import Head from 'next/head';
-import Image from 'next/image';
-import React from 'react';
+
+import heroImage from './../assets/about_us_hero.jpg';
+import sectionTwoImage from './../assets/about_us_image_2.jpg';
 
 function About() {
   return (
@@ -42,13 +46,17 @@ function About() {
             <h1>
               We&apos;re group of foodies who love cooking and the internet
             </h1>
-            <Image
-              src={''}
-              alt={''}
+            <div
               className={
-                'aspect-[1/1] sm:aspect-[16/6] w-full h-auto object-cover border-2'
-              }
-            />
+                'relative aspect-[1/1] sm:aspect-[16/6] w-full h-auto'
+              }>
+              <Image
+                src={heroImage.src}
+                alt={''}
+                fill={true}
+                className={'object-cover object-left'}
+              />
+            </div>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
               atque magnam unde ipsam odio placeat impedit, a consequuntur
@@ -70,8 +78,7 @@ function About() {
             <div
               className={
                 'w-full h-fit flex flex-col md:flex-row items-start justify-start gap-8'
-              }
-            >
+              }>
               <article className={'order-2 md:order-1 w-full h-auto'}>
                 <h2 className={'md:m-0'}>Simple, Easy Recipes for All</h2>
                 <p>
@@ -90,13 +97,17 @@ function About() {
                   repellendus quasi facilis.
                 </p>
               </article>
-              <Image
-                src={''}
-                alt={''}
+              <div
                 className={
-                  'order-1 md:order-2 aspect-[1/1] sm:aspect-[16/6] w-full h-auto object-cover border-2'
-                }
-              />
+                  'relative order-1 md:order-2 aspect-[1/1] sm:aspect-[4/3] w-full h-auto'
+                }>
+                <Image
+                  src={sectionTwoImage.src}
+                  alt={''}
+                  fill={true}
+                  className={'object-cover'}
+                />
+              </div>
             </div>
           </Container>
         </section>
@@ -106,16 +117,14 @@ function About() {
             <ul
               className={
                 'w-full h-fit grid grid-cols-3 md:grid-cols-6 auto-rows-fr gap-4'
-              }
-            >
+              }>
               {[...Array(12)].map((_) => {
                 return (
                   <li
                     key={`team_member_${Math.random()}`}
                     className={
                       'w-full h-fit flex flex-col items-center justify-start gap-1'
-                    }
-                  >
+                    }>
                     <Avatar
                       image={''}
                       size={'lg'}
