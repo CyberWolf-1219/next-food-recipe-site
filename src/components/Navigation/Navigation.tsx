@@ -7,8 +7,7 @@ import Logo from '../Logo/Logo';
 import Avatar from '../Avatar/Avatar';
 
 import { FaHamburger } from 'react-icons/fa';
-import { GoSignOut } from 'react-icons/go';
-import { FaUser } from 'react-icons/fa';
+import UserMenu from '../UserMenu/UserMenu';
 
 function Navigation() {
   const [navOpen, setNavOpen] = useState(false);
@@ -85,27 +84,7 @@ function Navigation() {
               className={
                 'absolute z-[100] top-[4.5rem] right-8 w-fit min-w-[8rem] h-fit p-4 bg-white rounded-md border-2 font-semibold'
               }>
-              <ul>
-                <li>Profile</li>
-                <hr className={'mt-1'} />
-                <li>Favourites</li>
-                <hr className={'mt-1'} />
-                <li>
-                  <IconButton
-                    classes={
-                      'mt-2 flex flex-row items-center justify-center gap-2 bg-accent text-white font-semibold'
-                    }>
-                    <GoSignOut /> Logout
-                  </IconButton>
-                </li>
-              </ul>
-              <IconButton
-                classes={
-                  'flex flex-row items-center justify-center gap-2 bg-accent text-white font-semibold'
-                }>
-                <FaUser />
-                Sign Up
-              </IconButton>
+              <UserMenu />
             </div>
           ) : null}
         </div>
