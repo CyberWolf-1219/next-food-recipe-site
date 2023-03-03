@@ -4,6 +4,7 @@ import IconButton from '../IconButton/IconButton';
 
 import { GoSignOut } from 'react-icons/go';
 import { FaUser } from 'react-icons/fa';
+import Link from 'next/link';
 
 function UserMenu() {
   const { data, status } = useSession();
@@ -19,9 +20,13 @@ function UserMenu() {
   if (status == 'authenticated') {
     return (
       <ul>
-        <li>Profile</li>
+        <li>
+          <Link href={'/user/'}>Profile</Link>
+        </li>
         <hr className={'mt-1'} />
-        <li>Favourites</li>
+        <li>
+          <Link href={`/user/${data.user?.email}`}>Favourites</Link>
+        </li>
         <hr className={'mt-1'} />
         <li>
           <IconButton

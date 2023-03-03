@@ -3,11 +3,14 @@ import Footer from '@/components/Footer/Footer';
 import IconButton from '@/components/IconButton/IconButton';
 import Navigation from '@/components/Navigation/Navigation';
 import RecipeCard from '@/components/RecipeCard/RecipeCard';
+import { getServerSession } from 'next-auth';
 import Head from 'next/head';
 import React from 'react';
 
 import { AiFillHeart } from 'react-icons/ai';
 import { MdDelete } from 'react-icons/md';
+import { authOptions } from '../api/auth/[...nextauth]';
+import { GetServerSidePropsContext } from 'next';
 
 function Favorites() {
   return (
@@ -100,6 +103,7 @@ function Favorites() {
                 return (
                   <li key={`favouirte_recipe_${Math.random()}`}>
                     <RecipeCard
+                      id={''}
                       image={''}
                       name={'Fav Recipe ###'}
                       likes={890000}
@@ -121,3 +125,20 @@ function Favorites() {
 }
 
 export default Favorites;
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const session = await getServerSession(context.req, context.res, authOptions);
+  console.log(session);
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanenet: false,
+      },
+    };
+  } else {
+    return {
+      props: {},
+    };
+  }
+}

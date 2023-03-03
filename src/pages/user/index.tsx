@@ -12,6 +12,9 @@ import { RxLoop } from 'react-icons/rx';
 import { MdDelete } from 'react-icons/md';
 import { MdUnsubscribe } from 'react-icons/md';
 import { GoSignOut } from 'react-icons/go';
+import { GetServerSidePropsContext } from 'next';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../api/auth/[...nextauth]';
 
 function Profile() {
   return (
@@ -171,3 +174,20 @@ function Profile() {
 }
 
 export default Profile;
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const session = await getServerSession(context.req, context.res, authOptions);
+  console.log(session);
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanenet: false,
+      },
+    };
+  } else {
+    return {
+      props: {},
+    };
+  }
+}
