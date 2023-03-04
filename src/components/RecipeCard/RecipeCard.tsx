@@ -12,6 +12,8 @@ import { GiCook } from 'react-icons/gi';
 
 import IconButton from '../IconButton/IconButton';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
+import RecipeSaveBtn from '../RecipeSaveBtn/RecipeSaveBtn';
 
 interface iRecipeCard {
   id: string;
@@ -22,10 +24,12 @@ interface iRecipeCard {
   createdDate?: number;
   authorName?: string;
   authorImage?: string;
+  saved: boolean;
 }
 
 function RecipeCard(props: iRecipeCard) {
   const router = useRouter();
+  const { data: authData, status: authStatus } = useSession();
 
   function viewRecipe() {
     router.replace(`/recipes/${props.id}`);
@@ -36,6 +40,16 @@ function RecipeCard(props: iRecipeCard) {
       className={
         'relative w-full h-fit shadow-sm shadow-black/50 rounded-lg border-x-[1px] border-t-[1px] overflow-hidden'
       }>
+      {/* SAVE BUTTON */}
+      {authStatus == 'authenticated' ? (
+        <RecipeSaveBtn
+          recipeId={props.id}
+          recipeName={props.name}
+          recipeImage={props.image}
+          saved={props.saved}
+        />
+      ) : null}
+
       {/* MAIN IMAGE */}
       <div
         className={
@@ -48,8 +62,8 @@ function RecipeCard(props: iRecipeCard) {
           className={'w-full h-full'}
         />
       </div>
-      {/* DETAILS */}
 
+      {/* DETAILS */}
       <div className={'w-full h-fit p-2'}>
         {/* HEADING */}
         <h3
