@@ -20,6 +20,7 @@ function SearchResultPanel(props: iSearchResultPanel) {
               return (
                 <li key={`search_recipe_${Math.random()}`}>
                   <RecipeCard
+                    id={resultObj.idMeal}
                     image={resultObj.strMealThumb}
                     name={resultObj.strMeal}
                     // likes={resultObj.likes}

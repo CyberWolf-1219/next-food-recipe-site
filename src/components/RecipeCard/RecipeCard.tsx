@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useContext, useEffect, useCallback, useState } from 'react';
 import {
   FaCalendarDay,
   FaClock,
@@ -14,6 +14,7 @@ import IconButton from '../IconButton/IconButton';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import RecipeSaveBtn from '../RecipeSaveBtn/RecipeSaveBtn';
+import { SavedRecipeContext } from '@/store/SavedRecipeContext';
 
 interface iRecipeCard {
   id: string;
@@ -24,12 +25,28 @@ interface iRecipeCard {
   createdDate?: number;
   authorName?: string;
   authorImage?: string;
-  saved: boolean;
 }
 
 function RecipeCard(props: iRecipeCard) {
   const router = useRouter();
   const { data: authData, status: authStatus } = useSession();
+  const { getSavedRecipes, recipeIds } = useContext(SavedRecipeContext);
+  const [saved, setSaved] = useState(false);
+
+  const checkIfSaved = useCallback(() => {
+    console.log(recipeIds, props.id);
+    const result = recipeIds.find((id) => {
+      console.log(id, props.id);
+      return id == props.id;
+    });
+    if (result) {
+      setSaved(true);
+    }
+  }, [props.id, recipeIds]);
+
+  useEffect(() => {
+    checkIfSaved();
+  }, [checkIfSaved]);
 
   function viewRecipe() {
     router.replace(`/recipes/${props.id}`);
@@ -46,7 +63,7 @@ function RecipeCard(props: iRecipeCard) {
           recipeId={props.id}
           recipeName={props.name}
           recipeImage={props.image}
-          saved={props.saved}
+          saved={saved}
         />
       ) : null}
 

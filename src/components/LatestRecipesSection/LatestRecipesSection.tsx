@@ -26,6 +26,7 @@ function LatestRecipesSection() {
                   <li key={`latest_recipe_${Math.random()}`}>
                     <Link href={'#'}>
                       <RecipeCard
+                        id={recipeObj.idMeal}
                         image={recipeObj.strMealThumb}
                         name={recipeObj.strMeal}
                         likes={500000}
