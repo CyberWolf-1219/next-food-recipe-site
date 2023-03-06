@@ -82,3 +82,9 @@ type RecipeDetailResponse = {
 };
 
 type Ingredient = { ingredient: string; amount: string };
+
+type SavedRecipe = {
+  recipeId: string;
+  recipeName: string;
+  recipeThumb: string;
+};
