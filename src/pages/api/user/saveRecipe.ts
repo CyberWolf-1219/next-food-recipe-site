@@ -13,13 +13,13 @@ export default async function Hanlder(
   );
 
   const dbClient = await getDBClient();
-  const db = dbClient.db();
-  const collection = db.collection('user-favourites');
-
-  const userDocument = await collection.findOne({ email: email });
-  console.log(userDocument);
-
   try {
+    const db = dbClient.db();
+    const collection = db.collection('user-favourites');
+
+    const userDocument = await collection.findOne({ email: email });
+    console.log(userDocument);
+
     if (userDocument) {
       const result = await collection.updateOne(
         { email: email },
