@@ -10,9 +10,9 @@ export default async function Handler(
   console.log('EMAIL: ', email, 'RECIPEID: ', recipeId);
 
   const dbClient = await getDBClient();
-  const db = dbClient.db();
-  const collection = db.collection('user-favourites');
   try {
+    const db = dbClient.db();
+    const collection = db.collection('user-favourites');
     const result = await collection.updateOne(
       { email: email },
       { $pull: { recipes: { recipeId: recipeId } } }
