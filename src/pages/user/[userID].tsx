@@ -5,14 +5,40 @@ import Navigation from '@/components/Navigation/Navigation';
 import RecipeCard from '@/components/RecipeCard/RecipeCard';
 import { getServerSession } from 'next-auth';
 import Head from 'next/head';
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { AiFillHeart } from 'react-icons/ai';
 import { MdDelete } from 'react-icons/md';
 import { authOptions } from '../api/auth/[...nextauth]';
 import { GetServerSidePropsContext } from 'next';
+import useFetch from '@/hooks/useFetch';
+import { SavedRecipeContext } from '@/store/SavedRecipeContext';
 
 function Favorites() {
+  const savedRecipeContext = useContext(SavedRecipeContext);
+  const execute = useFetch();
+  const [recipes, setRecipes] = useState<Array<Recipe>>([]);
+
+  useEffect(() => {
+    savedRecipeContext.recipeIds.map(async (recipeId) => {
+      const result: { recipe: Recipe } = await execute(
+        `/api/recipes/saved_recipe_details?id=${recipeId}`,
+        {}
+      );
+      setRecipes((prevArray) => {
+        return [...prevArray, result.recipe];
+      });
+    });
+
+    return () => {
+      setRecipes([]);
+    };
+  }, [execute, savedRecipeContext]);
+
+  useEffect(() => {
+    console.log(recipes);
+  }, [recipes]);
+
   return (
     <>
       <Head>
@@ -99,18 +125,18 @@ function Favorites() {
               className={
                 'w-full h-fit mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-auto gap-4'
               }>
-              {[...Array(20)].map((_) => {
+              {recipes.map((recipe) => {
                 return (
                   <li key={`favouirte_recipe_${Math.random()}`}>
                     <RecipeCard
-                      id={''}
-                      image={''}
-                      name={'Fav Recipe ###'}
-                      likes={890000}
-                      comments={500000}
-                      createdDate={Date.now()}
-                      authorImage={''}
-                      authorName={''}
+                      id={recipe.idMeal}
+                      image={recipe.strMealThumb}
+                      name={recipe.strMeal}
+                      // likes={890000}
+                      // comments={500000}
+                      // createdDate={Date.now()}
+                      // authorImage={''}
+                      // authorName={''}
                     />
                   </li>
                 );
