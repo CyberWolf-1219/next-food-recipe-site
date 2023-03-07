@@ -1,6 +1,6 @@
 import useFetch from '@/hooks/useFetch';
 import { useSession } from 'next-auth/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import IconButton from '../IconButton/IconButton';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
@@ -12,6 +12,7 @@ interface iRecipeSaveBtn {
 }
 
 function RecipeSaveBtn(props: iRecipeSaveBtn) {
+  console.log(props.saved);
   const [execute, result] = useFetch();
   const { data: authData, status: authStatus } = useSession();
   const [saved, setSaved] = useState(props.saved);
@@ -47,6 +48,10 @@ function RecipeSaveBtn(props: iRecipeSaveBtn) {
       return saveRecipe();
     }
   }
+
+  useEffect(() => {
+    setSaved(props.saved);
+  }, [props.saved]);
 
   return (
     <IconButton
