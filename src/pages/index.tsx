@@ -6,9 +6,20 @@ import LatestRecipesSection from '@/components/LatestRecipesSection/LatestRecipe
 import Navigation from '@/components/Navigation/Navigation';
 import PopularCategorySection from '@/components/PopularCategorySection/PopularCategorySection';
 import SuperDeliciousSection from '@/components/SuperDeliciousSection/SuperDeliciousSection';
+import { SavedRecipeContext } from '@/store/SavedRecipeContext';
+import { useSession } from 'next-auth/react';
 import Head from 'next/head';
+import { useContext, useEffect } from 'react';
 
 export default function Home() {
+  const { data: authData, status: authStatus } = useSession();
+  const { getSavedRecipes, recipeIds } = useContext(SavedRecipeContext);
+
+  useEffect(() => {
+    if (authStatus !== 'authenticated') return;
+    getSavedRecipes();
+  }, [getSavedRecipes, authStatus]);
+
   return (
     <>
       <Head>
