@@ -106,6 +106,7 @@ function Category() {
                   return (
                     <li key={`recipe_${Math.random()}`}>
                       <RecipeCard
+                        id={recipeObj.idMeal}
                         image={recipeObj.strMealThumb}
                         name={recipeObj.strMeal}
                         // likes={5000}
