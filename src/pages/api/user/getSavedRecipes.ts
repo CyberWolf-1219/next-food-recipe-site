@@ -1,5 +1,4 @@
 import getDBClient from '@/lib/getDB';
-import { WithId } from 'mongodb';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function Handler(
@@ -7,14 +6,15 @@ export default async function Handler(
   res: NextApiResponse
 ) {
   console.log('SAVED RECIPE LIST REQUEST =============================');
-  const { email } = req.body;
+  console.log(req.query);
+  const { email } = req.query;
   const dbClient = await getDBClient();
-  const db = dbClient.db();
-  const collection = db.collection('user-favourites');
   try {
+    const db = dbClient.db();
+    const collection = db.collection('user-favourites');
     const userDocument = await collection.findOne({ email: email });
     console.log('DOCUMENT: ', userDocument);
-    res.status(200).json({ recipes: userDocument?.recipes });
+    res.status(200).json({ recipes: userDocument?.recipes ?? [] });
     dbClient.close();
   } catch (error) {
     console.error(error);
