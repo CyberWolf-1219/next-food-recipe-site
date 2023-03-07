@@ -19,22 +19,28 @@ import breakInstructionsToSteps from '@/utility/breakInstructionsToSteps';
 
 function RecipeView() {
   const router = useRouter();
-  const [execute, result] = useFetch();
+  const execute = useFetch();
   const [ingredients, setIngredients] = useState<Array<Ingredient>>([]);
   const [steps, setSteps] = useState<Array<string>>([]);
+  const [recipe, setRecipe] = useState<Recipe>();
 
   useEffect(() => {
-    execute(`/api/recipes/recipe?id=${router.query.recipeID}`, {});
+    (async () => {
+      const fetchResult = await execute(
+        `/api/recipes/recipe?id=${router.query.recipeID}`,
+        {}
+      );
+      setRecipe(fetchResult.recipe);
+    })();
   }, [execute, router]);
 
   useEffect(() => {
-    const r = result as { recipe: Recipe };
-    if (r) {
-      console.log(r);
-      setIngredients(extractIngredients(r.recipe));
-      setSteps(breakInstructionsToSteps(r.recipe.strInstructions));
+    if (recipe) {
+      console.log(recipe);
+      setIngredients(extractIngredients(recipe));
+      setSteps(breakInstructionsToSteps(recipe.strInstructions));
     }
-  }, [result]);
+  }, [recipe]);
 
   return (
     <>
@@ -69,12 +75,8 @@ function RecipeView() {
             className={
               'w-full h-fit grid grid-cols-1 auto-rows-auto md:grid-cols-6 lg:grid-cols-12 gap-y-4'
             }>
-            <RecipeViewHeader
-              recipeName={(result as { recipe: Recipe })?.recipe?.strMeal}
-            />
-            <RecipeViewSummary
-              videoLink={(result as { recipe: Recipe })?.recipe?.strYoutube}
-            />
+            <RecipeViewHeader recipeName={recipe?.strMeal!} />
+            <RecipeViewSummary videoLink={recipe?.strYoutube!} />
             <RecipeViewIngredients ingredients={ingredients} />
             {/* <RecipeViewNutritionFacts /> */}
             <RecipeViewSteps steps={steps} />

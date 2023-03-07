@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import IconButton from '../IconButton/IconButton';
 import HeroSlide from '../HeroSlide/HeroSlide';
@@ -7,11 +7,17 @@ import useFetch from '@/hooks/useFetch';
 import Container from '../Container/Container';
 
 function HomeHeroSection() {
-  const [execute, result] = useFetch();
+  const execute = useFetch();
   const slides = useRef<Array<HTMLDivElement>>([]);
+  const [result, setResult] = useState<{ recipes: Array<Recipe> }>({
+    recipes: [],
+  });
 
   useEffect(() => {
-    execute('/api/recipes/trending_recipes', {});
+    (async () => {
+      const fetchResult = await execute('/api/recipes/trending_recipes', {});
+      setResult(fetchResult);
+    })();
   }, [execute]);
 
   useEffect(() => {
@@ -36,19 +42,17 @@ function HomeHeroSection() {
           className={`relative aspect-[1/1] lg:aspect-[3/1.5] w-screen lg:w-full h-auto flex flex-row bg-white overflow-hidden`}>
           {/* SLIDE */}
 
-          {(result as { recipes: Array<Recipe> })?.recipes.map(
-            (recipeObject, index) => {
-              return (
-                <HeroSlide
-                  key={`hero_slide_${Math.random()}`}
-                  image={recipeObject.strMealThumb}
-                  heading={recipeObject.strMeal}
-                  position={(index + 1).toString()}
-                  slideRefHolder={slides.current}
-                />
-              );
-            }
-          )}
+          {result.recipes.map((recipeObject, index) => {
+            return (
+              <HeroSlide
+                key={`hero_slide_${Math.random()}`}
+                image={recipeObject.strMealThumb}
+                heading={recipeObject.strMeal}
+                position={(index + 1).toString()}
+                slideRefHolder={slides.current}
+              />
+            );
+          })}
         </div>
         {/* CONTROLS */}
         <div className={'absolute z-[5]  bottom-0 right-0'}>

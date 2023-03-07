@@ -1,14 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '../Container/Container';
 import RecipeCard from '../RecipeCard/RecipeCard';
 import Link from 'next/link';
 import useFetch from '@/hooks/useFetch';
 
 function LatestRecipesSection() {
-  const [execute, result] = useFetch();
+  const execute = useFetch();
+  const [result, setResult] = useState<{ recipes: Array<Recipe> }>({
+    recipes: [],
+  });
 
   useEffect(() => {
-    execute('/api/recipes/latest_recipes', {});
+    (async () => {
+      const fetchResult = await execute('/api/recipes/latest_recipes', {});
+      setResult(fetchResult);
+    })();
   }, [execute]);
 
   return (

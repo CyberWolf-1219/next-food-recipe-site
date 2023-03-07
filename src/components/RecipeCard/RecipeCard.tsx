@@ -34,9 +34,7 @@ function RecipeCard(props: iRecipeCard) {
   const [saved, setSaved] = useState(false);
 
   const checkIfSaved = useCallback(() => {
-    console.log(recipeIds, props.id);
     const result = recipeIds.find((id) => {
-      console.log(id, props.id);
       return id == props.id;
     });
     if (result) {

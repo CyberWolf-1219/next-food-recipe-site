@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import Container from '@/components/Container/Container';
@@ -11,13 +11,19 @@ import Image from 'next/image';
 
 function Category() {
   const router = useRouter();
-  const [execute, result] = useFetch();
+  const execute = useFetch();
+  const [result, setResult] = useState<{ recipes: Array<Recipe> }>({
+    recipes: [],
+  });
 
   useEffect(() => {
-    execute(
-      '/api/recipes/category_recipes?category=' + router.query.categoryID,
-      {}
-    );
+    (async () => {
+      const fetchResult = await execute(
+        '/api/recipes/category_recipes?category=' + router.query.categoryID,
+        {}
+      );
+      setResult(fetchResult);
+    })();
   }, [execute, router]);
 
   return (
@@ -61,9 +67,7 @@ function Category() {
               }>
               <h1>{router.query.categoryID}</h1>
               <span className={'inline-block w-max whitespace-nowrap'}>
-                {`(${
-                  (result as { recipes: Array<Recipe> })?.recipes?.length
-                } Recipes)`}
+                {`(${result.recipes.length} Recipes)`}
               </span>
             </div>
             <p>
@@ -101,24 +105,22 @@ function Category() {
               className={
                 'w-full h-fit grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-auto gap-4 '
               }>
-              {(result as { recipes: Array<Recipe> })?.recipes?.map(
-                (recipeObj) => {
-                  return (
-                    <li key={`recipe_${Math.random()}`}>
-                      <RecipeCard
-                        id={recipeObj.idMeal}
-                        image={recipeObj.strMealThumb}
-                        name={recipeObj.strMeal}
-                        // likes={5000}
-                        // comments={1200}
-                        // createdDate={Date.now()}
-                        // authorImage={''}
-                        // authorName={'Uncle Po'}
-                      />
-                    </li>
-                  );
-                }
-              )}
+              {result.recipes.map((recipeObj) => {
+                return (
+                  <li key={`recipe_${Math.random()}`}>
+                    <RecipeCard
+                      id={recipeObj.idMeal}
+                      image={recipeObj.strMealThumb}
+                      name={recipeObj.strMeal}
+                      // likes={5000}
+                      // comments={1200}
+                      // createdDate={Date.now()}
+                      // authorImage={''}
+                      // authorName={'Uncle Po'}
+                    />
+                  </li>
+                );
+              })}
             </ul>
           </Container>
         </section>

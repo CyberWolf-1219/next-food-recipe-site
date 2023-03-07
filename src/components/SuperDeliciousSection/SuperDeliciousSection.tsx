@@ -1,13 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '../Container/Container';
 import RecipeCard from '../RecipeCard/RecipeCard';
 import useFetch from '@/hooks/useFetch';
 
 function SuperDeliciousSection() {
-  const [execute, result] = useFetch();
+  const execute = useFetch();
+  const [result, setResult] = useState<{ recipes: Array<Recipe> }>({
+    recipes: [],
+  });
 
   useEffect(() => {
-    execute('/api/recipes/popular_recipes', {});
+    (async () => {
+      const fetchResult = await execute('/api/recipes/popular_recipes', {});
+      setResult(fetchResult);
+    })();
   }, [execute]);
 
   return (

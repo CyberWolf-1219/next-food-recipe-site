@@ -23,23 +23,22 @@ interface iSavedRecipeContextProvider {
 }
 
 function SavedRecipeContextProvider(props: iSavedRecipeContextProvider) {
-  const { data, status } = useSession();
-  const [execute, result] = useFetch();
+  const { data: authData, status } = useSession();
+  const execute = useFetch();
   const [savedRecipes, setSavedRecipes] = useState<Array<string>>([]);
 
   const getSavedRecipes = useCallback(async () => {
-    await execute(`/api/user/getSavedRecipes?email=${data?.user?.email}`, {});
-  }, [execute, data?.user]);
-
-  useEffect(() => {
-    if (!result?.recipes) return;
+    const result = await execute(
+      `/api/user/getSavedRecipes?email=${authData?.user?.email}`,
+      {}
+    );
     const savedRecipeIds = (result.recipes as Array<SavedRecipe>).map(
       (recipeObj) => {
         return recipeObj.recipeId;
       }
     );
     setSavedRecipes(savedRecipeIds);
-  }, [result]);
+  }, [execute, authData?.user]);
 
   return (
     <SavedRecipeContext.Provider
