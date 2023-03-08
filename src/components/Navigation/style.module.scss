@@ -1,0 +1,14 @@
+.navigation_panel[data-state='true'] {
+  clip-path: circle(200% at top left);
+}
+
+.navigation_panel[data-state='false'] {
+  clip-path: circle(0% at top left);
+}
+
+@media screen and (min-width: 768px) {
+  .navigation_panel[data-state='false'],
+  .navigation_panel[data-state='true'] {
+    clip-path: none;
+  }
+}

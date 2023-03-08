@@ -1,0 +1,17 @@
+.navigation_panel[data-state=true] {
+  -webkit-clip-path: circle(200% at top left);
+          clip-path: circle(200% at top left);
+}
+
+.navigation_panel[data-state=false] {
+  -webkit-clip-path: circle(0% at top left);
+          clip-path: circle(0% at top left);
+}
+
+@media screen and (min-width: 768px) {
+  .navigation_panel[data-state=false],
+  .navigation_panel[data-state=true] {
+    -webkit-clip-path: none;
+            clip-path: none;
+  }
+}/*# sourceMappingURL=style.module.css.map */
