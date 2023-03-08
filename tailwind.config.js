@@ -20,6 +20,10 @@ module.exports = {
         secondary: 'hsl(27, 20%, 0%)',
         accent: 'hsl(15, 100%, 59%)',
       },
+      fontFamily: {
+        primary: 'Playfair Display',
+        secondary: 'Inter',
+      },
     },
   },
   plugins: [],

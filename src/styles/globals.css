@@ -9,6 +9,8 @@
   --clr-secondary: hsl(30, 4%, 9%);
   --clr-accent: hsl(15, 100%, 59%);
   --max-width: 1440px;
+  --font-primary: 'Playfair Display';
+  --font-secondary: 'Inter';
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
     'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
@@ -40,7 +42,7 @@ body {
 body {
   color: rgb(var(--clr-secondary));
   background: var(--clr-primary);
-  font-family: 'Inter', serif;
+  font-family: var(--font-secondary), serif;
   font-weight: 400;
   line-height: 1.75;
 }
