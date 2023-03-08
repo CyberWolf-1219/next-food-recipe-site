@@ -75,7 +75,11 @@ function RecipeView() {
             className={
               'w-full h-fit grid grid-cols-1 auto-rows-auto md:grid-cols-6 lg:grid-cols-12 gap-y-4'
             }>
-            <RecipeViewHeader recipeName={recipe?.strMeal!} />
+            <RecipeViewHeader
+              id={recipe?.idMeal as string}
+              recipeName={recipe?.strMeal!}
+              recipeImage={recipe?.strMealThumb as string}
+            />
             <RecipeViewSummary videoLink={recipe?.strYoutube!} />
             <RecipeViewIngredients ingredients={ingredients} />
             {/* <RecipeViewNutritionFacts /> */}

@@ -62,6 +62,7 @@ function RecipeCard(props: iRecipeCard) {
           recipeName={props.name}
           recipeImage={props.image}
           saved={saved}
+          classes={'absolute top-4 right-4 z-[50]'}
         />
       ) : null}
 

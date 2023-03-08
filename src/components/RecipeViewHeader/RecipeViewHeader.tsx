@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Container from '../Container/Container';
 import IconButton from '../IconButton/IconButton';
 import Avatar from '../Avatar/Avatar';
 import { FaCalendarDay, FaComment, FaDownload, FaHeart } from 'react-icons/fa';
+import { SavedRecipeContext } from '@/store/SavedRecipeContext';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import RecipeSaveBtn from '../RecipeSaveBtn/RecipeSaveBtn';
 
 interface iRecipeViewHeader {
+  id: string;
   recipeName: string;
+  recipeImage: string;
 }
 
 function RecipeViewHeader(props: iRecipeViewHeader) {
+  const savedRecipeContext = useContext(SavedRecipeContext);
+  const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    if (savedRecipeContext.recipeIds.includes(props.id)) {
+      setSaved(true);
+    }
+  }, [savedRecipeContext, setSaved, props.id]);
+
   return (
     <section
       className={
@@ -22,6 +36,7 @@ function RecipeViewHeader(props: iRecipeViewHeader) {
           <h1 className={'col-start-1 col-end-7 lg:col-end-11 w-full h-fit'}>
             {props.recipeName}
           </h1>
+
           {/* <ul
             className={
               'col-start-1 col-end-5 w-full h-full flex flex-row items-center justify-between gap-4 font-semibold text-xs'
@@ -52,18 +67,28 @@ function RecipeViewHeader(props: iRecipeViewHeader) {
               100
             </li>
           </ul> */}
+
+          {/* DOWNLOAD BUTTON */}
           <IconButton
             classes={
               'col-start-5 col-end-6 lg:col-start-11 lg:col-end-12 w-full h-full flex flex-row items-center justify-center'
             }>
-            <FaDownload size={'1.5rem'} />
+            <FaDownload
+              size={'1.5rem'}
+              color={'var(--clr-accent)'}
+            />
           </IconButton>
-          <IconButton
-            classes={
-              'col-start-6 col-end-7 lg:col-start-12 lg:col-end-13 w-full h-full flex flex-row items-center justify-center'
-            }>
-            <FaHeart size={'1.5rem'} />
-          </IconButton>
+
+          {/* FAVOURITE BUTTON */}
+          <RecipeSaveBtn
+            width={'full'}
+            height={'full'}
+            recipeId={props.id}
+            recipeName={props.recipeName}
+            recipeImage={props.recipeImage}
+            saved={saved}
+            classes={'col-start-5 col-end-6 lg:col-start-12 lg:col-end-13'}
+          />
         </div>
         <hr />
       </Container>

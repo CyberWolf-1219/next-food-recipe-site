@@ -4,11 +4,19 @@ import React, { useEffect, useState } from 'react';
 import IconButton from '../IconButton/IconButton';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
+const sizeOptions = {
+  fit: 'fit',
+  full: 'full',
+};
+
 interface iRecipeSaveBtn {
   recipeId: string;
   recipeName: string;
   recipeImage: string;
   saved: boolean;
+  classes?: string;
+  width?: keyof typeof sizeOptions;
+  height?: keyof typeof sizeOptions;
 }
 
 function RecipeSaveBtn(props: iRecipeSaveBtn) {
@@ -55,19 +63,19 @@ function RecipeSaveBtn(props: iRecipeSaveBtn) {
 
   return (
     <IconButton
-      width={'fit'}
-      height={'fit'}
-      classes={'absolute top-4 right-0 z-[10]'}
+      width={props.width ?? 'fit'}
+      height={props.height ?? 'fit'}
+      classes={`${props.classes}`}
       action={saveBtnHanlder}>
       {saved ? (
         <AiFillHeart
           size={'2rem'}
-          color={'#fc037b'}
+          color={'var(--clr-accent)'}
         />
       ) : (
         <AiOutlineHeart
           size={'2rem'}
-          color={'#fc037b'}
+          color={'var(--clr-accent)'}
         />
       )}
     </IconButton>
