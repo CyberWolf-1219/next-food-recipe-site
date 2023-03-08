@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import Footer from '@/components/Footer/Footer';
 import Navigation from '@/components/Navigation/Navigation';
@@ -8,11 +8,15 @@ import Head from 'next/head';
 import useFetch from '@/hooks/useFetch';
 
 function Search() {
-  const [execute, result] = useFetch();
+  const execute = useFetch();
+  const [result, setResult] = useState<{ recipes: Array<Recipe> }>({
+    recipes: [],
+  });
 
   const search = useCallback(
-    (query: string) => {
-      execute(`/api/recipes/search?q=${query}`, {});
+    async (query: string) => {
+      const fetchResult = await execute(`/api/recipes/search?q=${query}`, {});
+      setResult(fetchResult);
     },
     [execute]
   );
@@ -47,13 +51,9 @@ function Search() {
       <main>
         <SearchPanel
           searchFunction={search}
-          resultCount={
-            (result as { recipes: Array<Recipe> })?.recipes?.length ?? 0
-          }
+          resultCount={result.recipes?.length ?? 0}
         />
-        <SearchResultPanel
-          resultsArray={(result as { recipes: Array<Recipe> })?.recipes ?? []}
-        />
+        <SearchResultPanel resultsArray={result?.recipes ?? []} />
       </main>
       <Footer />
     </>
