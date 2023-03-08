@@ -28,10 +28,13 @@ function Footer() {
   }
 
   return (
-    <footer className={'w-full h-fit mt-auto px-4 pt-8 lg:pt-[8rem]'}>
+    <footer className={'w-full h-fit mt-auto px-4'}>
       <hr />
       <Container>
-        <div className={'w-full h-fit lg:grid grid-cols-12 auto-rows-auto'}>
+        <div
+          className={
+            'w-full h-fit pt-[2rem] lg:grid grid-cols-12 auto-rows-auto'
+          }>
           <Logo
             classes={
               'col-start-1 col-end-6 w-full max-w-[200px] lg:max-w-[20rem]'
@@ -114,16 +117,15 @@ function Footer() {
               </ul>
             </li>
           </ul>
-
-          <div className={'col-start-1 col-end-13 w-full h-fit'}>
-            <hr className={' w-full h-fit mt-2 border-[2px]'} />
-            <p className={'w-full h-fit'}>
-              <span>&copy;</span>
-              <span>2020 Tastebite - All rights reserved</span>
-            </p>
-          </div>
         </div>
       </Container>
+      <div className={'col-start-1 col-end-13 w-full h-fit'}>
+        <hr className={' w-full h-fit mt-2 border-[1px]'} />
+        <p className={'w-full h-fit'}>
+          <span>&copy;</span>
+          <span>2020 Tastebite - All rights reserved</span>
+        </p>
+      </div>
     </footer>
   );
 }
