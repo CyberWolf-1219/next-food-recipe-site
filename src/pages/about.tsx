@@ -39,7 +39,7 @@ function About() {
         <Navigation />
       </header>
       <main className={'w-full min-h-screen'}>
-        <section className={'px-4 pb-[5rem]'}>
+        <section className={'px-4 mb-[5rem]'}>
           <Container>
             <h2>About</h2>
             <hr className={'border-[1px] border-secondary/50'} />
@@ -48,7 +48,7 @@ function About() {
             </h1>
             <div
               className={
-                'relative aspect-[1/1] sm:aspect-[16/6] w-full h-auto'
+                'relative aspect-[1/1] sm:aspect-[16/6] w-full h-auto mb-[1rem]'
               }>
               <Image
                 src={heroImage.src}
@@ -73,7 +73,7 @@ function About() {
             </p>
           </Container>
         </section>
-        <section className={'px-4 pb-[5rem]'}>
+        <section className={'px-4 mb-[5rem]'}>
           <Container>
             <div
               className={
@@ -91,15 +91,12 @@ function About() {
                   laboriosam magni nemo nihil sunt dicta totam tempore ipsa
                   optio natus quae autem officia ipsum, accusamus earum modi
                   quia animi omnis ad? Quisquam corporis quasi numquam
-                  perferendis cum, saepe est, praesentium suscipit, recusandae
-                  rerum totam! Nisi, molestias suscipit debitis quibusdam dolor
-                  exercitationem, atque alias, illum natus sequi expedita eius
-                  repellendus quasi facilis.
+                  perferendis cum, saepe est
                 </p>
               </article>
               <div
                 className={
-                  'relative order-1 md:order-2 aspect-[1/1] sm:aspect-[4/3] w-full h-auto'
+                  'relative order-1 md:order-2 aspect-[1/1] sm:aspect-[4/3] w-full h-full md:mt-[1.5rem]'
                 }>
                 <Image
                   src={sectionTwoImage.src}
