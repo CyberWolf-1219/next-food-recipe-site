@@ -12,8 +12,7 @@ function Logo(props: iLogo) {
       x='0px'
       y='0px'
       viewBox='0 0 150 50'
-      className={`aspect-[3/1] w-[40%] h-auto ${props.classes ?? null}`}
-    >
+      className={`aspect-[3/1] h-auto ${props.classes ?? null}`}>
       <g id='logo'>
         <path
           id='letter_x5F_t'
