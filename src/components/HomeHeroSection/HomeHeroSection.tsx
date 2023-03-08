@@ -35,7 +35,7 @@ function HomeHeroSection() {
   }
 
   return (
-    <section className={`relative w-full h-fit`}>
+    <section className={`relative w-full h-fit mb-[5rem]`}>
       <Container relative={true}>
         {/* SLIDE CONTAINER */}
         <div

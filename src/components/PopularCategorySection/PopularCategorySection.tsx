@@ -18,7 +18,7 @@ function PopularCategorySection() {
   }, [execute]);
 
   return (
-    <section className={'px-2 lg:pb-[8rem]'}>
+    <section className={'px-2 lg:mb-[5rem]'}>
       <Container>
         <div className={'w-full h-fit'}>
           <h2>Popular Categories</h2>

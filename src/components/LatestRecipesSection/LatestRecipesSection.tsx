@@ -18,7 +18,7 @@ function LatestRecipesSection() {
   }, [execute]);
 
   return (
-    <section className={`px-4 lg:pb-[8rem]`}>
+    <section className={`px-4 lg:mb-[5rem]`}>
       <Container>
         <div>
           <h2>Latest Recipes</h2>

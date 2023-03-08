@@ -17,7 +17,7 @@ function SuperDeliciousSection() {
   }, [execute]);
 
   return (
-    <section className={'px-4 lg:pb-[8rem]'}>
+    <section className={'px-4 lg:mb-[5rem]'}>
       <Container>
         <div>
           <h2>Super Delicious</h2>
