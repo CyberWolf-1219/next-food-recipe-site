@@ -4,10 +4,10 @@ import React from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 
 const AvatarSizeOptions = {
-  sm: 'w-[1.5rem]',
-  md: 'w-[3rem]',
-  lg: 'w-[5rem]',
-  xl: 'w-[8rem]',
+  sm: 'w-[2rem]',
+  md: 'w-[2.5rem]',
+  lg: 'w-[3rem]',
+  xl: 'w-[4rem]',
 };
 
 interface iAvatar {
