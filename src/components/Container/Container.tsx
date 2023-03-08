@@ -10,8 +10,7 @@ function Container(props: iContainer) {
     <div
       className={`${
         props.relative ? 'relative' : null
-      } w-full h-fit max-w-screen-xl mx-auto`}
-    >
+      } w-full h-fit max-w-screen-lg mx-auto`}>
       {props.children}
     </div>
   );
