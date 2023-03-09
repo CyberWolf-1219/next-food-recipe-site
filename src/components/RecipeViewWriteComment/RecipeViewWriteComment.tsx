@@ -6,12 +6,14 @@ import useFetch from '@/hooks/useFetch';
 
 import { RiSendPlaneFill } from 'react-icons/ri';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 interface iRecipeViewWriteComment {
   recipeId: string;
 }
 
 function RecipeViewWriteComment({ recipeId }: iRecipeViewWriteComment) {
+  const router = useRouter();
   const [disabled, setDisabled] = useState(false);
   const execute = useFetch();
   const { data: authData, status: authStatus } = useSession();
@@ -19,14 +21,17 @@ function RecipeViewWriteComment({ recipeId }: iRecipeViewWriteComment) {
 
   async function postComment(e: React.MouseEvent) {
     e.preventDefault();
-    const fetchResult = execute('/api/community/post_comment', {
+    const fetchResult = await execute('/api/community/post_comment', {
       method: 'POST',
       body: JSON.stringify({
         userId: authData!.user!.email!,
+        userName: authData!.user!.name,
         recipeId: recipeId,
         content: commentContent,
+        date: Date.now(),
       }),
     });
+    router.reload();
   }
 
   useEffect(() => {
