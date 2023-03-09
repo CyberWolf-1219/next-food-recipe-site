@@ -22,7 +22,7 @@ function Favorites() {
   useEffect(() => {
     savedRecipeContext.recipeIds.map(async (recipeId) => {
       const result: { recipe: Recipe } = await execute(
-        `/api/recipes/saved_recipe_details?id=${recipeId}`,
+        `/api/recipes/recipe?id=${recipeId}`,
         {}
       );
       setRecipes((prevArray) => {
