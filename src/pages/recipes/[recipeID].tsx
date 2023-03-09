@@ -18,6 +18,7 @@ import extractIngredients from '@/utility/extractIngredients';
 import breakInstructionsToSteps from '@/utility/breakInstructionsToSteps';
 
 import { gsap } from 'gsap/dist/gsap';
+import RecipeViewComments from '@/components/RecipeViewComments/RecipeViewComments';
 
 function RecipeView() {
   const router = useRouter();
@@ -141,6 +142,7 @@ function RecipeView() {
             <RecipeViewWriteComment
               recipeId={router.query.recipeID as string}
             />
+            <RecipeViewComments recipeId={router.query.recipeID as string} />
           </div>
         </Container>
       </main>
