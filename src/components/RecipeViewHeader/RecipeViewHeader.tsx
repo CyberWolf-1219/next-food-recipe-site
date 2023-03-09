@@ -93,7 +93,7 @@ function RecipeViewHeader(props: iRecipeViewHeader) {
               recipeName={props.recipeName}
               recipeImage={props.recipeImage}
               saved={saved}
-              classes={'col-start-5 col-end-6 lg:col-start-12 lg:col-end-13'}
+              classes={'col-start-6 col-end-7 lg:col-start-12 lg:col-end-13'}
             />
           ) : null}
         </div>

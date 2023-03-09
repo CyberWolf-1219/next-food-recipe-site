@@ -71,11 +71,13 @@ function RecipeSaveBtn(props: iRecipeSaveBtn) {
         <AiFillHeart
           size={'2rem'}
           color={'var(--clr-accent)'}
+          className={'mx-auto'}
         />
       ) : (
         <AiOutlineHeart
           size={'2rem'}
           color={'var(--clr-accent)'}
+          className={'mx-auto'}
         />
       )}
     </IconButton>
