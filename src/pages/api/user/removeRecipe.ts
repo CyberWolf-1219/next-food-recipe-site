@@ -1,4 +1,4 @@
-import getDBClient from '@/lib/getDB';
+import getDBClient from '@/lib/getDBClient';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function Handler(
