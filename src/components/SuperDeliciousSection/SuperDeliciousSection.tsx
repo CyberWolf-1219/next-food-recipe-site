@@ -1,13 +1,48 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Container from '../Container/Container';
 import RecipeCard from '../RecipeCard/RecipeCard';
 import useFetch from '@/hooks/useFetch';
+
+import { gsap } from 'gsap/dist/gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 function SuperDeliciousSection() {
   const execute = useFetch();
   const [result, setResult] = useState<{ recipes: Array<Recipe> }>({
     recipes: [],
   });
+  const parentElement = useRef(null);
+  const timeline = useRef<GSAPTimeline>();
+
+  useEffect(() => {
+    const gsapContext = gsap.context(() => {
+      timeline.current = gsap
+        .timeline({
+          defaults: { duration: 0.5, ease: 'power3.out', stagger: 0.2 },
+          scrollTrigger: {
+            trigger: parentElement.current,
+            scrub: false,
+            once: true,
+            start: 'top 50%',
+          },
+        })
+        .fromTo(
+          'h2',
+          { opacity: 0, yPercent: 100 },
+          { opacity: 1, yPercent: 0 }
+        )
+        .fromTo(
+          '.recipe_card',
+          { opacity: 0, yPercent: 30 },
+          { opacity: 1, yPercent: 0 }
+        );
+    }, parentElement);
+
+    return () => {
+      gsapContext.revert();
+    };
+  }, [result]);
 
   useEffect(() => {
     (async () => {
@@ -17,7 +52,9 @@ function SuperDeliciousSection() {
   }, [execute]);
 
   return (
-    <section className={'px-4 lg:mb-[5rem]'}>
+    <section
+      ref={parentElement}
+      className={'px-4 lg:mb-[5rem]'}>
       <Container>
         <div>
           <h2>Super Delicious</h2>
@@ -26,7 +63,7 @@ function SuperDeliciousSection() {
           className={
             'w-full h-fit grid gird-cols-1 md:grid-cols-3 lg:grid-cols-3 auto-rows-fr gap-4'
           }>
-          {(result as { recipes: Array<Recipe> })?.recipes?.map((recipeObj) => {
+          {result.recipes?.map((recipeObj) => {
             return (
               <li key={`trending_recipe_${Math.random()}`}>
                 <RecipeCard

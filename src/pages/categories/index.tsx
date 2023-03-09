@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import Head from 'next/head';
 import Navigation from '@/components/Navigation/Navigation';

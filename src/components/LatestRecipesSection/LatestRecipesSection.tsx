@@ -1,14 +1,49 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Container from '../Container/Container';
 import RecipeCard from '../RecipeCard/RecipeCard';
 import Link from 'next/link';
 import useFetch from '@/hooks/useFetch';
+
+import { gsap } from 'gsap/dist/gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 function LatestRecipesSection() {
   const execute = useFetch();
   const [result, setResult] = useState<{ recipes: Array<Recipe> }>({
     recipes: [],
   });
+  const timeline = useRef<GSAPTimeline>();
+  const parentElement = useRef(null);
+
+  useEffect(() => {
+    const gsapContext = gsap.context(() => {
+      timeline.current = gsap
+        .timeline({
+          defaults: { duration: 0.5, stagger: 0.2 },
+          scrollTrigger: {
+            trigger: parentElement.current,
+            scrub: false,
+            once: true,
+            start: 'top 50%',
+          },
+        })
+        .fromTo(
+          'h2',
+          { opacity: 0, yPercent: 100 },
+          { opacity: 1, yPercent: 0 }
+        )
+        .fromTo(
+          '.recipe_card',
+          { opacity: 0, yPercent: 30 },
+          { opacity: 1, yPercent: 0 }
+        );
+    }, parentElement);
+
+    return () => {
+      gsapContext.revert();
+    };
+  }, [result]);
 
   useEffect(() => {
     (async () => {
@@ -18,7 +53,9 @@ function LatestRecipesSection() {
   }, [execute]);
 
   return (
-    <section className={`px-4 lg:mb-[5rem]`}>
+    <section
+      ref={parentElement}
+      className={`px-4 lg:mb-[5rem]`}>
       <Container>
         <div>
           <h2>Latest Recipes</h2>

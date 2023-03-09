@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import Avatar from '@/components/Avatar/Avatar';
@@ -17,12 +17,65 @@ import Head from 'next/head';
 import extractIngredients from '@/utility/extractIngredients';
 import breakInstructionsToSteps from '@/utility/breakInstructionsToSteps';
 
+import { gsap } from 'gsap/dist/gsap';
+
 function RecipeView() {
   const router = useRouter();
   const execute = useFetch();
   const [ingredients, setIngredients] = useState<Array<Ingredient>>([]);
   const [steps, setSteps] = useState<Array<string>>([]);
   const [recipe, setRecipe] = useState<Recipe>();
+  const parentElement = useRef(null);
+  const timeline = useRef<GSAPTimeline>();
+
+  // MOVE IN ANIMATION
+  useEffect(() => {
+    const gsapContext = gsap.context(() => {
+      timeline.current = gsap
+        .timeline({
+          defaults: { duration: 0.5, ease: 'power3.out' },
+        })
+        .fromTo(
+          '.recipe_view_header__heading',
+          { opacity: 0, yPercent: 50 },
+          { opacity: 1, yPercent: 0 }
+        )
+        .fromTo(
+          '.recipe_view_header .icon_button',
+          { opacity: 0, yPercent: 50 },
+          { opacity: 1, yPercent: 0 }
+        )
+        .fromTo(
+          '.recipe_view_summary__video',
+          { opacity: 0, yPercent: 50 },
+          { opacity: 1, yPercent: 0 }
+        )
+        .fromTo(
+          '.recipe_view_ingredients__heading',
+          { opacity: 0, yPercent: 50 },
+          { opacity: 1, yPercent: 0 }
+        )
+        .fromTo(
+          '.recipe_view_ingredients__ingredient',
+          { opacity: 0, yPercent: 50 },
+          { opacity: 1, yPercent: 0, stagger: 0.3 }
+        )
+        .fromTo(
+          '.recipe_view_steps__heading',
+          { opacity: 0, yPercent: 50 },
+          { opacity: 1, yPercent: 0 }
+        )
+        .fromTo(
+          '.recipe_view_steps__step',
+          { opacity: 0, yPercent: 50 },
+          { opacity: 1, yPercent: 0, stagger: 0.3 }
+        );
+    }, parentElement);
+
+    return () => {
+      gsapContext.revert();
+    };
+  });
 
   useEffect(() => {
     (async () => {
@@ -35,8 +88,7 @@ function RecipeView() {
   }, [execute, router]);
 
   useEffect(() => {
-    if (recipe) {
-      console.log(recipe);
+    if (recipe?.strIngredient1 && recipe.strInstructions) {
       setIngredients(extractIngredients(recipe));
       setSteps(breakInstructionsToSteps(recipe.strInstructions));
     }
@@ -72,6 +124,7 @@ function RecipeView() {
       <main>
         <Container>
           <div
+            ref={parentElement}
             className={
               'w-full h-fit grid grid-cols-1 auto-rows-auto md:grid-cols-6 lg:grid-cols-12 gap-y-4'
             }>

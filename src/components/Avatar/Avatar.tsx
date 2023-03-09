@@ -19,7 +19,7 @@ interface iAvatar {
 function Avatar({ image, size, classes }: iAvatar) {
   return (
     <div
-      className={`relative aspect-[1/1] ${
+      className={`user_avatar relative aspect-[1/1] ${
         AvatarSizeOptions[size]
       } h-auto rounded-full border-2 ${classes ?? null}`}>
       {image ? (

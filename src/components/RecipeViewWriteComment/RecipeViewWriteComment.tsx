@@ -5,6 +5,8 @@ import IconButton from '../IconButton/IconButton';
 import { RiSendPlaneFill } from 'react-icons/ri';
 
 function RecipeViewWriteComment() {
+  return null;
+
   return (
     <section
       className={

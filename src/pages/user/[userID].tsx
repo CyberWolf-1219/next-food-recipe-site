@@ -111,37 +111,46 @@ function Favorites() {
             <hr />
           </Container>
         </section>
-        <section className={'w-full h-fit px-4 py-8'}>
+        <section className={'w-full h-fit min-h-screen px-4 py-8'}>
           <Container>
-            <IconButton
+            {/* <IconButton
               classes={
                 'flex flex-row items-center justify-center gap-2 bg-accent text-white shadow-md shadow-accent/30'
               }
               disabled={true}>
               <MdDelete />
               Delete Selected
-            </IconButton>
-            <ul
-              className={
-                'w-full h-fit mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-auto gap-4'
-              }>
-              {recipes.map((recipe) => {
-                return (
-                  <li key={`favouirte_recipe_${Math.random()}`}>
-                    <RecipeCard
-                      id={recipe.idMeal}
-                      image={recipe.strMealThumb}
-                      name={recipe.strMeal}
-                      // likes={890000}
-                      // comments={500000}
-                      // createdDate={Date.now()}
-                      // authorImage={''}
-                      // authorName={''}
-                    />
-                  </li>
-                );
-              })}
-            </ul>
+            </IconButton> */}
+            {recipes.length == 0 ? (
+              <p
+                className={
+                  'w-full h-fit font-bold text-3xl text-gray-500 text-center'
+                }>
+                Looks Like You Don&apos;t Have Any Favourite Recipes.
+              </p>
+            ) : (
+              <ul
+                className={
+                  'w-full h-fit mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-auto gap-4'
+                }>
+                {recipes.map((recipe) => {
+                  return (
+                    <li key={`favouirte_recipe_${Math.random()}`}>
+                      <RecipeCard
+                        id={recipe.idMeal}
+                        image={recipe.strMealThumb}
+                        name={recipe.strMeal}
+                        // likes={890000}
+                        // comments={500000}
+                        // createdDate={Date.now()}
+                        // authorImage={''}
+                        // authorName={''}
+                      />
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
           </Container>
         </section>
       </main>
@@ -154,7 +163,6 @@ export default Favorites;
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getServerSession(context.req, context.res, authOptions);
-  console.log(session);
   if (!session) {
     return {
       redirect: {

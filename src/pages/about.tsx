@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
 
@@ -10,7 +10,96 @@ import Navigation from '@/components/Navigation/Navigation';
 import heroImage from './../assets/about_us_hero.jpg';
 import sectionTwoImage from './../assets/about_us_image_2.jpg';
 
+import { gsap } from 'gsap/dist/gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
+
 function About() {
+  const timeline = useRef<GSAPTimeline>();
+  const parentElement = useRef(null);
+
+  // MOVE IN ANIMATION
+  useEffect(() => {
+    const gsapContext = gsap.context(() => {
+      const timeline_1 = gsap
+        .timeline({
+          defaults: { duration: 0.5, stagger: 0.3, ease: 'power3.out' },
+        })
+        .fromTo('h1', { opacity: 0, yPercent: 50 }, { opacity: 1, yPercent: 0 })
+        .fromTo(
+          '.about_section_one__image',
+          { opacity: 0, yPercent: 50 },
+          { opacity: 1, yPercent: 0 }
+        )
+        .fromTo(
+          '.about_section_one__text',
+          { opacity: 0, yPercent: 50 },
+          { opacity: 1, yPercent: 0 }
+        );
+
+      const timeline_2 = gsap
+        .timeline({
+          defaults: { duration: 0.5, ease: 'power3.out' },
+          scrollTrigger: {
+            trigger: '.about_section_two',
+            scrub: false,
+            once: true,
+            start: 'top 50%',
+          },
+        })
+        .fromTo(
+          '.about_section_two__heading',
+          { opacity: 0, yPercent: 50 },
+          { opacity: 1, yPercent: 0 }
+        )
+        .fromTo(
+          '.about_section_two__text',
+          { opacity: 0, yPercent: 50 },
+          { opacity: 1, yPercent: 0 }
+        )
+        .fromTo(
+          '.about_section_two__image',
+          { opacity: 0, yPercent: 50 },
+          { opacity: 1, yPercent: 0 }
+        );
+
+      const timeline_3 = gsap
+        .timeline({
+          defaults: { duration: 0.5, ease: 'power3.out' },
+          scrollTrigger: {
+            trigger: '.about_section_three',
+            scrub: false,
+            once: true,
+            start: 'top 50%',
+          },
+        })
+        .fromTo(
+          '.about_section_three__heading',
+          { opacity: 0, yPercent: 50 },
+          { opacity: 1, yPercent: 0 }
+        )
+        .fromTo(
+          '.about_section_three li',
+          { yPercent: 30, opacity: 0 },
+          { yPercent: 0, opacity: 1, stagger: 0.3 }
+        )
+        .fromTo(
+          '.about_section_three__subheading',
+          { yPercent: 50, opacity: 0 },
+          { yPercent: 0, opacity: 1, stagger: 0.3 }
+        )
+        .fromTo(
+          '.about_section_three__subtext',
+          { yPercent: 30, opacity: 0 },
+          { yPercent: 0, opacity: 1, stagger: 0.3 }
+        );
+    }, parentElement);
+
+    return () => {
+      gsapContext.revert();
+    };
+  });
+
   return (
     <>
       <Head>
@@ -38,7 +127,9 @@ function About() {
       <header>
         <Navigation />
       </header>
-      <main className={'w-full min-h-screen'}>
+      <main
+        ref={parentElement}
+        className={'w-full min-h-screen'}>
         <section className={'px-4 mb-[5rem]'}>
           <Container>
             <h2>About</h2>
@@ -48,7 +139,7 @@ function About() {
             </h1>
             <div
               className={
-                'relative aspect-[1/1] sm:aspect-[16/6] w-full h-auto mb-[1rem]'
+                'about_section_one__image relative aspect-[1/1] sm:aspect-[16/6] w-full h-auto mb-[1rem]'
               }>
               <Image
                 src={heroImage.src}
@@ -57,7 +148,7 @@ function About() {
                 className={'object-cover object-left'}
               />
             </div>
-            <p>
+            <p className={'about_section_one__text'}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
               atque magnam unde ipsam odio placeat impedit, a consequuntur
               nesciunt ex eum dolore amet in provident neque laborum laboriosam
@@ -73,15 +164,17 @@ function About() {
             </p>
           </Container>
         </section>
-        <section className={'px-4 mb-[5rem]'}>
+        <section className={'about_section_two px-4 mb-[5rem]'}>
           <Container>
             <div
               className={
                 'w-full h-fit flex flex-col md:flex-row items-start justify-start gap-8'
               }>
               <article className={'order-2 md:order-1 w-full h-auto'}>
-                <h2 className={'md:m-0'}>Simple, Easy Recipes for All</h2>
-                <p>
+                <h2 className={'about_section_two__heading md:m-0'}>
+                  Simple, Easy Recipes for All
+                </h2>
+                <p className={'about_section_two__text'}>
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed
                   ipsam voluptates facere enim reprehenderit! Voluptatem maiores
                   deleniti quo? Eligendi quo ad vero laudantium eveniet
@@ -96,7 +189,7 @@ function About() {
               </article>
               <div
                 className={
-                  'relative order-1 md:order-2 aspect-[1/1] sm:aspect-[4/3] w-full h-full md:mt-[1.5rem]'
+                  'about_section_two__image relative order-1 md:order-2 aspect-[1/1] sm:aspect-[4/3] w-full h-full md:mt-[1.5rem]'
                 }>
                 <Image
                   src={sectionTwoImage.src}
@@ -108,9 +201,11 @@ function About() {
             </div>
           </Container>
         </section>
-        <section className={'px-4 pb-[5rem]'}>
+        <section className={'about_section_three px-4 pb-[5rem]'}>
           <Container>
-            <h2>An Incredible Group of Foodies</h2>
+            <h2 className={'about_section_three__heading'}>
+              An Incredible Group of Foodies
+            </h2>
             <ul
               className={
                 'w-full h-fit grid grid-cols-3 md:grid-cols-6 auto-rows-fr gap-4'
@@ -132,11 +227,12 @@ function About() {
                 );
               })}
             </ul>
-            <article className={'mt-[3rem]'}>
-              <strong className={'block mb-[1rem]'}>
+            <article className={' mt-[3rem]'}>
+              <strong
+                className={'about_section_three__subheading block mb-[1rem]'}>
                 Operating from NYC, Dubai & London
               </strong>
-              <p className={'text-sm'}>
+              <p className={'about_section_three__subtext text-sm'}>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo
                 minima unde rem consequatur esse alias neque vero, voluptate ea,
                 corporis delectus ad soluta sint. Aspernatur molestiae ad

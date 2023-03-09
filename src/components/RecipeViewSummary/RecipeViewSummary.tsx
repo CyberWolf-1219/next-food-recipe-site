@@ -19,19 +19,23 @@ function RecipeViewSummary(props: iRecipeViewSummary) {
 
   return (
     <section
-      className={'md:col-start-1 md:col-end-7 lg:col-end-13 w-full h-fit px-4'}>
+      className={
+        'recipe_view_summary md:col-start-1 md:col-end-7 lg:col-end-13 w-full h-fit px-4'
+      }>
       <Container>
         <div>
-          <p>
+          {/* <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
             Praesentium debitis nihil sint nemo cumque enim dignissimos earum
             placeat nisi? Explicabo sapiente possimus a magnam neque tempora
             iste iure placeat voluptates!
-          </p>
+          </p> */}
           <embed
             src={url}
             type='video/mp4'
-            className={'aspect-[4/3] lg:aspect-[16/8] w-full h-auto mt-8'}
+            className={
+              'recipe_view_summary__video aspect-[4/3] lg:aspect-[16/8] w-full h-auto mt-8'
+            }
           />
           {/* <Image
             src={''}

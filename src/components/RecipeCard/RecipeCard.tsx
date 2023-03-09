@@ -1,5 +1,11 @@
 import Image from 'next/image';
-import React, { useContext, useEffect, useCallback, useState } from 'react';
+import React, {
+  useRef,
+  useContext,
+  useEffect,
+  useCallback,
+  useState,
+} from 'react';
 import {
   FaCalendarDay,
   FaClock,
@@ -15,6 +21,8 @@ import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import RecipeSaveBtn from '../RecipeSaveBtn/RecipeSaveBtn';
 import { SavedRecipeContext } from '@/store/SavedRecipeContext';
+
+import { gsap } from 'gsap/dist/gsap';
 
 interface iRecipeCard {
   id: string;
@@ -32,6 +40,33 @@ function RecipeCard(props: iRecipeCard) {
   const { data: authData, status: authStatus } = useSession();
   const { getSavedRecipes, recipeIds } = useContext(SavedRecipeContext);
   const [saved, setSaved] = useState(false);
+  const card = useRef(null);
+  // const timeline = useRef<GSAPTimeline>();
+
+  // HOVER ANIMATION
+  useEffect(() => {
+    const gsapContext = gsap.context(() => {
+      const cardHoverAnimation = gsap.to(card.current, {
+        scale: 1.1,
+        boxShadow: '0px 0px 30px 0px hsla(15, 100%, 59%, 0.3)',
+        paused: true,
+        duration: 0.3,
+        zIndex: 20,
+      });
+
+      (card.current! as HTMLElement).addEventListener('mouseenter', () => {
+        cardHoverAnimation.play();
+      });
+
+      (card.current! as HTMLElement).addEventListener('mouseleave', () => {
+        cardHoverAnimation.reverse();
+      });
+    }, card);
+
+    return () => {
+      gsapContext.revert();
+    };
+  }, [props, card]);
 
   const checkIfSaved = useCallback(() => {
     const result = recipeIds.find((id) => {
@@ -52,8 +87,9 @@ function RecipeCard(props: iRecipeCard) {
 
   return (
     <article
+      ref={card}
       className={
-        'relative w-full h-fit shadow-sm shadow-black/50 rounded-lg border-x-[1px] border-t-[1px] overflow-hidden'
+        'recipe_card relative w-full h-fit shadow-sm shadow-black/50 rounded-md border-x-[1px] border-t-[1px] bg-white overflow-hidden'
       }>
       {/* SAVE BUTTON */}
       {authStatus == 'authenticated' ? (
@@ -67,15 +103,12 @@ function RecipeCard(props: iRecipeCard) {
       ) : null}
 
       {/* MAIN IMAGE */}
-      <div
-        className={
-          'relative aspect-[1/0.7] w-full h-auto rounded-t-lg shadow-md shadow-accent/30 object-cover'
-        }>
+      <div className={'relative aspect-[1/0.5] w-full h-auto rounded-t-md'}>
         <Image
           src={props.image}
           alt={''}
           fill={true}
-          className={'w-full h-full'}
+          className={'w-full h-full object-cover'}
         />
       </div>
 
@@ -84,7 +117,7 @@ function RecipeCard(props: iRecipeCard) {
         {/* HEADING */}
         <h3
           className={
-            'w-full max-w-full min-h-[.75em] h-fit mt-0 mb-2 truncate text-[1.5rem] sm:text-[2rem]'
+            'w-full max-w-full min-h-[.75em] h-fit mt-0 mb-[0.5rem] truncate text-[1.5rem] sm:text-[2rem]'
           }>
           {props.name}
         </h3>
@@ -126,16 +159,16 @@ function RecipeCard(props: iRecipeCard) {
           porro itaque! Reiciendis doloribus magnam eos nostrum nulla velit
           inventore voluptatem odio quo similique.
         </p> */}
-        <hr className={''} />
+        {/* <hr className={''} /> */}
         {/* ACTIONS */}
         <IconButton
           action={viewRecipe}
           classes={
-            'flex flex-row items-center justify-center gap-2 my-2 shadow-md shadow-accent/40 bg-accent rounded-md text-white'
+            'flex flex-row items-center justify-center gap-2 my-0 bg-accent rounded-md text-white'
           }>
           <GiCook size={'1.2rem'} /> View Recipe
         </IconButton>
-        <hr />
+        {/* <hr /> */}
         {/* POST DETAILS */}
         <div
           className={

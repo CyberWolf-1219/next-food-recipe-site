@@ -9,16 +9,18 @@ interface iRecipeViewIngredients {
 function RecipeViewIngredients(props: iRecipeViewIngredients) {
   return (
     <section
-      className={'md:col-start-1 md:col-end-4 lg:col-end-5 w-full h-fit px-4'}>
+      className={
+        'recipe_view_ingredients md:col-start-1 md:col-end-4 lg:col-end-5 w-full h-fit px-4'
+      }>
       <Container>
-        <h2>Ingredients</h2>
+        <h2 className={'recipe_view_ingredients__heading'}>Ingredients</h2>
         <ul>
           {props.ingredients.map((ingredient) => {
             return (
               <li
                 key={`ingredient_${Math.random()}`}
                 className={
-                  'w-full h-fit flex flex-row items-center justify-start gap-2 font-semibold'
+                  'recipe_view_ingredients__ingredient w-full h-fit flex flex-row items-center justify-start gap-2 font-semibold'
                 }>
                 <input
                   type='checkbox'

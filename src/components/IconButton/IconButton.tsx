@@ -23,7 +23,9 @@ function IconButton(props: iIconButton) {
   return (
     <button
       onClick={props.action}
-      className={`inline-block ${widthOptions[props.width ?? 'full']} ${
+      className={`icon_button inline-block ${
+        widthOptions[props.width ?? 'full']
+      } ${
         heightOptions[props.height ?? 'fit']
       } px-3 py-2 rounded-md disabled:bg-gray-300 disabled:text-gray-400 disabled:shadow-transparent ${
         props.classes ?? null

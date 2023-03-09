@@ -1,7 +1,6 @@
 export default function extractIngredients(recipe: Recipe) {
   // GET OBJECT KEYS
   const keys = Object.keys(recipe);
-  console.log(keys);
 
   //   FILTER OUT INGREDIENT KEYS
   const ingredientKeys = keys.filter((key) => {
@@ -9,7 +8,6 @@ export default function extractIngredients(recipe: Recipe) {
       return key;
     }
   });
-  console.log(ingredientKeys);
 
   //   GET INGREDIENT VALUES
   const ingredients = ingredientKeys.map((key) => {
@@ -18,11 +16,9 @@ export default function extractIngredients(recipe: Recipe) {
       return value;
     }
   });
-  console.log(ingredients);
 
   //   FILTERE OUT EMPTY INGREDIENTS
   const filteredIngredients = filterEmpty(ingredients as Array<string>);
-  console.log(filteredIngredients);
 
   //   FILTER MEASURE KEYS
   const amountKeys = keys.filter((key) => {
@@ -30,7 +26,6 @@ export default function extractIngredients(recipe: Recipe) {
       return true;
     }
   });
-  console.log(amountKeys);
 
   //   GET MEASURES
   const amounts = amountKeys.map((key) => {
@@ -39,15 +34,12 @@ export default function extractIngredients(recipe: Recipe) {
       return value;
     }
   });
-  console.log(amounts);
 
   //   FILTER OUT EMPTY MEASURES
   const filteredAmounts = filterEmpty(amounts as Array<string>);
-  console.log(filteredAmounts);
 
   //   MAP MEASURES TO INGREDIENTS
   const mappedIngredients = mapLists(filteredIngredients, filteredAmounts);
-  console.log(mappedIngredients);
 
   return mappedIngredients;
 }

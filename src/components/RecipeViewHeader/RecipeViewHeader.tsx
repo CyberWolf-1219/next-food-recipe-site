@@ -6,6 +6,7 @@ import { FaCalendarDay, FaComment, FaDownload, FaHeart } from 'react-icons/fa';
 import { SavedRecipeContext } from '@/store/SavedRecipeContext';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import RecipeSaveBtn from '../RecipeSaveBtn/RecipeSaveBtn';
+import { useSession } from 'next-auth/react';
 
 interface iRecipeViewHeader {
   id: string;
@@ -16,6 +17,7 @@ interface iRecipeViewHeader {
 function RecipeViewHeader(props: iRecipeViewHeader) {
   const savedRecipeContext = useContext(SavedRecipeContext);
   const [saved, setSaved] = useState(false);
+  const { data: authData, status: authStatus } = useSession();
 
   useEffect(() => {
     if (savedRecipeContext.recipeIds.includes(props.id)) {
@@ -26,14 +28,17 @@ function RecipeViewHeader(props: iRecipeViewHeader) {
   return (
     <section
       className={
-        'md:col-start-1 md:col-end-7 lg:col-end-13 w-full h-fit px-4 '
+        'recipe_view_header md:col-start-1 md:col-end-7 lg:col-end-13 w-full h-fit px-4 '
       }>
       <Container>
         <div
           className={
             'w-full h-fit grid grid-cols-6 lg:grid-cols-12 auto-rows-auto gap-4'
           }>
-          <h1 className={'col-start-1 col-end-7 lg:col-end-11 w-full h-fit'}>
+          <h1
+            className={
+              'recipe_view_header__heading col-start-1 col-end-7 lg:col-end-11 w-full h-fit'
+            }>
             {props.recipeName}
           </h1>
 
@@ -80,15 +85,17 @@ function RecipeViewHeader(props: iRecipeViewHeader) {
           </IconButton>
 
           {/* FAVOURITE BUTTON */}
-          <RecipeSaveBtn
-            width={'full'}
-            height={'full'}
-            recipeId={props.id}
-            recipeName={props.recipeName}
-            recipeImage={props.recipeImage}
-            saved={saved}
-            classes={'col-start-5 col-end-6 lg:col-start-12 lg:col-end-13'}
-          />
+          {authStatus == 'authenticated' ? (
+            <RecipeSaveBtn
+              width={'full'}
+              height={'full'}
+              recipeId={props.id}
+              recipeName={props.recipeName}
+              recipeImage={props.recipeImage}
+              saved={saved}
+              classes={'col-start-5 col-end-6 lg:col-start-12 lg:col-end-13'}
+            />
+          ) : null}
         </div>
         <hr />
       </Container>
