@@ -40,7 +40,7 @@ body {
 }
 
 body {
-  color: rgb(var(--clr-secondary));
+  color: var(--clr-secondary);
   background: var(--clr-primary);
   font-family: var(--font-secondary), serif;
   font-weight: 400;
@@ -106,5 +106,7 @@ small,
 }
 
 hr {
+  border-color: var(--clr-accent);
   margin-top: 2rem;
+  margin-bottom: 1rem;
 }
