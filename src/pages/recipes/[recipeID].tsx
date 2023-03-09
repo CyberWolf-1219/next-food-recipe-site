@@ -137,8 +137,10 @@ function RecipeView() {
             <RecipeViewIngredients ingredients={ingredients} />
             {/* <RecipeViewNutritionFacts /> */}
             <RecipeViewSteps steps={steps} />
-            <RecipeViewWriteComment />
             <RecipeViewOptinForm />
+            <RecipeViewWriteComment
+              recipeId={router.query.recipeID as string}
+            />
           </div>
         </Container>
       </main>

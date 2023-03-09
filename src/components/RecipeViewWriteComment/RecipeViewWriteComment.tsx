@@ -1,11 +1,41 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+
 import Container from '../Container/Container';
 import IconButton from '../IconButton/IconButton';
+import useFetch from '@/hooks/useFetch';
 
 import { RiSendPlaneFill } from 'react-icons/ri';
+import { useSession } from 'next-auth/react';
 
-function RecipeViewWriteComment() {
-  return null;
+interface iRecipeViewWriteComment {
+  recipeId: string;
+}
+
+function RecipeViewWriteComment({ recipeId }: iRecipeViewWriteComment) {
+  const [disabled, setDisabled] = useState(false);
+  const execute = useFetch();
+  const { data: authData, status: authStatus } = useSession();
+  const [commentContent, setCommentContent] = useState<string>('');
+
+  async function postComment(e: React.MouseEvent) {
+    e.preventDefault();
+    const fetchResult = execute('/api/community/post_comment', {
+      method: 'POST',
+      body: JSON.stringify({
+        userId: authData!.user!.email!,
+        recipeId: recipeId,
+        content: commentContent,
+      }),
+    });
+  }
+
+  useEffect(() => {
+    if (authStatus == 'unauthenticated' || commentContent.length <= 20) {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+  }, [authStatus, commentContent]);
 
   return (
     <section
@@ -22,8 +52,18 @@ function RecipeViewWriteComment() {
             id=''
             cols={30}
             rows={10}
+            placeholder={
+              'Make sure your comment is longer than 20 characters. OK?'
+            }
+            onInput={(e) => {
+              setCommentContent(e.currentTarget.value);
+            }}
             className={'w-full h-fit p-2 rounded-md'}></textarea>
           <IconButton
+            disabled={disabled}
+            action={(e) => {
+              postComment(e);
+            }}
             classes={
               'flex flex-row items-center justify-center gap-2 bg-accent shadow-sm shadow-accent/30 text-white'
             }>
