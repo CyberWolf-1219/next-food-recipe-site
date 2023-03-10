@@ -3,6 +3,7 @@ import Container from '../Container/Container';
 import RecipeCard from '../RecipeCard/RecipeCard';
 
 import { gsap } from 'gsap/dist/gsap';
+import Link from 'next/link';
 
 interface iSearchResultPanel {
   resultsArray: Array<Recipe>;
@@ -44,18 +45,22 @@ function SearchResultPanel({ resultsArray }: iSearchResultPanel) {
             }>
             {resultsArray.map((resultObj) => {
               return (
-                <li key={`search_recipe_${Math.random()}`}>
-                  <RecipeCard
-                    id={resultObj.idMeal}
-                    image={resultObj.strMealThumb}
-                    name={resultObj.strMeal}
-                    // likes={resultObj.likes}
-                    // comments={resultObj.comments}
-                    // createdDate={resultObj.createdDate}
-                    // authorImage={resultObj.image}
-                    // authorName={resultObj.authorName}
-                  />
-                </li>
+                <Link
+                  key={`search_recipe_${Math.random()}`}
+                  href={`/recipes/${resultObj.idMeal}`}>
+                  <li>
+                    <RecipeCard
+                      id={resultObj.idMeal}
+                      image={resultObj.strMealThumb}
+                      name={resultObj.strMeal}
+                      // likes={resultObj.likes}
+                      // comments={resultObj.comments}
+                      // createdDate={resultObj.createdDate}
+                      // authorImage={resultObj.image}
+                      // authorName={resultObj.authorName}
+                    />
+                  </li>
+                </Link>
               );
             })}
           </ul>
