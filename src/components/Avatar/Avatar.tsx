@@ -14,9 +14,10 @@ interface iAvatar {
   image: string;
   size: keyof typeof AvatarSizeOptions;
   classes?: string;
+  iconClasses?: string;
 }
 
-function Avatar({ image, size, classes }: iAvatar) {
+function Avatar({ image, size, classes, iconClasses }: iAvatar) {
   return (
     <div
       className={`user_avatar relative aspect-[1/1] ${
@@ -30,7 +31,7 @@ function Avatar({ image, size, classes }: iAvatar) {
           className={'rounded-full object-center'}
         />
       ) : (
-        <FaUserCircle className={'w-full h-full'} />
+        <FaUserCircle className={`w-full h-full ${iconClasses}`} />
       )}
     </div>
   );
