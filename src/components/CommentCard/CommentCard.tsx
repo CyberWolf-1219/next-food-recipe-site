@@ -10,7 +10,7 @@ function CommentCard({ userName, commentDate, comment }: iCommentCard) {
   return (
     <article
       className={
-        'w-full h-fit p-[0.5rem] rounded-lg border-[1px] border-accent bg-white'
+        'w-full h-fit mt-[1rem] p-[0.5rem] rounded-lg border-[1px] border-accent bg-white'
       }>
       <div
         className={'w-full h-fit flex flex-row items-center justify-between'}>
