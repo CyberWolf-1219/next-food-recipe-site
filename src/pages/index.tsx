@@ -38,10 +38,15 @@ export default function Home() {
         />
       </Head>
       <header>
-        <Navigation />
+        <Navigation
+          position={'absolute'}
+          logoFill={'fill-white'}
+          textColor={'text-white'}
+          avatarFill={'fill-white'}
+        />
+        <HomeHeroSection />
       </header>
       <main className={''}>
-        <HomeHeroSection />
         <PopularCategorySection />
         <SuperDeliciousSection />
         <LatestRecipesSection />
