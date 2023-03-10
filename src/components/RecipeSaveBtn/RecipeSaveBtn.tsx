@@ -20,7 +20,6 @@ interface iRecipeSaveBtn {
 }
 
 function RecipeSaveBtn(props: iRecipeSaveBtn) {
-  console.log(props.saved);
   const execute = useFetch();
   const { data: authData, status: authStatus } = useSession();
   const [saved, setSaved] = useState(props.saved);

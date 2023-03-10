@@ -89,7 +89,7 @@ function RecipeCard(props: iRecipeCard) {
     <article
       ref={card}
       className={
-        'recipe_card relative w-full h-fit shadow-sm shadow-black/50 rounded-md border-x-[1px] border-t-[1px] bg-white overflow-hidden'
+        'recipe_card relative w-full h-fit shadow-sm shadow-black/20 rounded-md bg-white overflow-hidden'
       }>
       {/* SAVE BUTTON */}
       {authStatus == 'authenticated' ? (
@@ -117,7 +117,7 @@ function RecipeCard(props: iRecipeCard) {
         {/* HEADING */}
         <h3
           className={
-            'w-full max-w-full min-h-[.75em] h-fit mt-0 mb-[0.5rem] truncate text-[1.5rem] sm:text-[2rem]'
+            'w-full max-w-full min-h-[.75em] h-fit mt-0 mb-[0.5rem] truncate text-[1.5rem] sm:text-[2rem] font-secondary'
           }>
           {props.name}
         </h3>
@@ -161,13 +161,13 @@ function RecipeCard(props: iRecipeCard) {
         </p> */}
         {/* <hr className={''} /> */}
         {/* ACTIONS */}
-        <IconButton
+        {/* <IconButton
           action={viewRecipe}
           classes={
             'flex flex-row items-center justify-center gap-2 my-0 bg-accent rounded-md text-white'
           }>
           <GiCook size={'1.2rem'} /> View Recipe
-        </IconButton>
+        </IconButton> */}
         {/* <hr /> */}
         {/* POST DETAILS */}
         <div

@@ -5,6 +5,7 @@ import useFetch from '@/hooks/useFetch';
 
 import { gsap } from 'gsap/dist/gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import Link from 'next/link';
 gsap.registerPlugin(ScrollTrigger);
 
 function SuperDeliciousSection() {
@@ -19,19 +20,15 @@ function SuperDeliciousSection() {
     const gsapContext = gsap.context(() => {
       timeline.current = gsap
         .timeline({
-          defaults: { duration: 0.5, ease: 'power3.out', stagger: 0.2 },
+          defaults: { duration: 0.5, ease: 'power3.out', stagger: 0.3 },
           scrollTrigger: {
             trigger: parentElement.current,
             scrub: false,
             once: true,
-            start: 'top 50%',
+            start: 'top 70%',
           },
         })
-        .fromTo(
-          'h2',
-          { opacity: 0, yPercent: 100 },
-          { opacity: 1, yPercent: 0 }
-        )
+        .fromTo('h2', { opacity: 0, yPercent: 30 }, { opacity: 1, yPercent: 0 })
         .fromTo(
           '.recipe_card',
           { opacity: 0, yPercent: 30 },
@@ -65,18 +62,22 @@ function SuperDeliciousSection() {
           }>
           {result.recipes?.map((recipeObj) => {
             return (
-              <li key={`trending_recipe_${Math.random()}`}>
-                <RecipeCard
-                  id={recipeObj.idMeal}
-                  image={recipeObj.strMealThumb}
-                  name={recipeObj.strMeal}
-                  likes={500000}
-                  comments={80000}
-                  createdDate={Date.now()}
-                  authorImage={''}
-                  authorName={recipeObj.strSource}
-                />
-              </li>
+              <Link
+                key={`trending_recipe_${Math.random()}`}
+                href={`/recipes/${recipeObj.idMeal}`}>
+                <li>
+                  <RecipeCard
+                    id={recipeObj.idMeal}
+                    image={recipeObj.strMealThumb}
+                    name={recipeObj.strMeal}
+                    likes={500000}
+                    comments={80000}
+                    createdDate={Date.now()}
+                    authorImage={''}
+                    authorName={recipeObj.strSource}
+                  />
+                </li>
+              </Link>
             );
           })}
         </ul>

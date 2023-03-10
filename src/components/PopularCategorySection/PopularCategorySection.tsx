@@ -16,7 +16,7 @@ function PopularCategorySection() {
   const parentElement = useRef(null);
   const timeline = useRef<GSAPTimeline>();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const gsapContext = gsap.context(() => {
       timeline.current = gsap
         .timeline({
@@ -24,16 +24,12 @@ function PopularCategorySection() {
           scrollTrigger: {
             trigger: parentElement.current,
             markers: false,
-            start: 'top 50%',
+            start: 'top 70%',
             scrub: false,
             once: true,
           },
         })
-        .fromTo(
-          'h2',
-          { yPercent: 100, opacity: 0 },
-          { yPercent: 0, opacity: 1 }
-        )
+        .fromTo('h2', { yPercent: 30, opacity: 0 }, { yPercent: 0, opacity: 1 })
         .fromTo(
           '.category_card',
           { opacity: 0, scale: 0.5 },

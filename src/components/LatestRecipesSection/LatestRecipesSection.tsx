@@ -28,11 +28,7 @@ function LatestRecipesSection() {
             start: 'top 50%',
           },
         })
-        .fromTo(
-          'h2',
-          { opacity: 0, yPercent: 100 },
-          { opacity: 1, yPercent: 0 }
-        )
+        .fromTo('h2', { opacity: 0, yPercent: 30 }, { opacity: 1, yPercent: 0 })
         .fromTo(
           '.recipe_card',
           { opacity: 0, yPercent: 30 },
@@ -67,7 +63,7 @@ function LatestRecipesSection() {
               (recipeObj) => {
                 return (
                   <li key={`latest_recipe_${Math.random()}`}>
-                    <Link href={'#'}>
+                    <Link href={`/recipes/${recipeObj.idMeal}`}>
                       <RecipeCard
                         id={recipeObj.idMeal}
                         image={recipeObj.strMealThumb}
