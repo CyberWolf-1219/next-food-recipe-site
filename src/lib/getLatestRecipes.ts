@@ -4,7 +4,7 @@ export default async function getLatestRecipes() {
   const latestRecipes: Array<Recipe> = [];
 
   try {
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 6; i++) {
       const response = await fetch(ENDPOINT);
       const jsonResult: RandomRecipeResponse = await response.json();
       latestRecipes.push(jsonResult.meals[0]);

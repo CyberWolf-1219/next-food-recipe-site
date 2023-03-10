@@ -9,7 +9,7 @@ export default async function getTrendingRecipes() {
   const recipes: Array<Recipe> = [];
 
   try {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 10; i++) {
       const response = await fetch(ENDPOINT, requestConfig);
       const result: RandomRecipeResponse = await response.json();
       recipes.push(result.meals[0]);
