@@ -12,7 +12,19 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 
 import gsap from 'gsap';
 
-function Navigation() {
+interface iNavigation {
+  position: 'static' | 'relative' | 'absolute';
+  logoFill: 'fill-white' | 'fill-accent';
+  textColor: 'text-white' | 'text-black';
+  avatarFill: 'fill-white' | 'fill-accent';
+}
+
+function Navigation({
+  position = 'static',
+  logoFill = 'fill-accent',
+  textColor = 'text-black',
+  avatarFill = 'fill-accent',
+}: iNavigation) {
   const [navOpen, setNavOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const timeline = useRef<GSAPTimeline>();
@@ -96,30 +108,30 @@ function Navigation() {
   return (
     <nav
       ref={parentElement}
-      className={`relative z-[100] w-full h-fit mb-[5rem] bg-white shadow-sm shadow-secondary/50`}>
+      className={`${position} z-[100] w-full h-fit bg-white/10 border-b-2 backdrop-blur-[2px]`}>
       <Container>
         <div
           className={`relative w-full h-fit py-4 flex flex-row items-center justify-start md:justify-between`}>
           {/* LOGO */}
-          <Logo classes={`w-[12rem] h-auto px-2`} />
+          <Logo classes={`w-[12rem] h-auto px-2 ${logoFill}`} />
 
           {/* NAV LINKS */}
           <ul
             data-state={`${navOpen}`}
             className={`${styleClasses.navigation_panel} absolute md:static inset-0 z-[10] w-screen md:w-fit h-screen md:h-fit flex flex-col md:flex-row items-center justify-center gap-[4rem] md:gap-[1rem] bg-accent md:bg-transparent font-semibold text-6xl md:text-lg text-primary md:text-secondary transition-[clip-path] duration-500 font-primary`}>
-            <li className={'navLink'}>
+            <li className={`navLink ${textColor}`}>
               <Link href={'/'}>Home</Link>
             </li>
-            <li className={'navLink'}>
+            <li className={`navLink ${textColor}`}>
               <Link href={'/categories'}>Categories</Link>
             </li>
-            <li className={'navLink'}>
+            <li className={`navLink ${textColor}`}>
               <Link href={'/recipes/search'}>Search</Link>
             </li>
             {/* <li className={'navLink'}>
               <Link href={'/blog'}>Blog</Link>
             </li> */}
-            <li className={'navLink'}>
+            <li className={`navLink ${textColor}`}>
               <Link href={'/about'}>About Us</Link>
             </li>
           </ul>
@@ -134,6 +146,7 @@ function Navigation() {
               size={'lg'}
               image={''}
               classes={'text-accent'}
+              iconClasses={`${avatarFill}`}
             />
           </IconButton>
 
