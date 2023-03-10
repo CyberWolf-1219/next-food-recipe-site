@@ -16,16 +16,14 @@ function RecipeViewComments({ recipeId }: iRecipeViewComments) {
   });
 
   useEffect(() => {
-    if (comments.comments.length > 0) return;
     (async () => {
       const fetchResult = await execute(
         `/api/community/get_comments?recipeId=${recipeId}`,
         {}
       );
-      console.log(fetchResult);
       setComments(fetchResult);
     })();
-  }, [recipeId, execute, comments]);
+  }, [recipeId, execute]);
 
   return (
     <section
