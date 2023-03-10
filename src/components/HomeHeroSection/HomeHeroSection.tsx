@@ -1,32 +1,33 @@
-import React, { useEffect, useRef, useState, useLayoutEffect } from 'react';
-
-import HeroSlide from '../HeroSlide/HeroSlide';
-import Container from '../Container/Container';
-import IconButton from '../IconButton/IconButton';
-import { changeSlidePosition } from './logic';
-import useFetch from '@/hooks/useFetch';
-
-import { FaArrowRight } from 'react-icons/fa';
-
+import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 
+import heroImage from '../../assets/home_hero.jpeg';
+import heroIcon from '../../assets/hero_icon.png';
+
 function HomeHeroSection() {
-  const execute = useFetch();
-  const slides = useRef<Array<HTMLDivElement>>([]);
-  const [result, setResult] = useState<{ recipes: Array<Recipe> }>({
-    recipes: [],
-  });
   const timeline = useRef<GSAPTimeline>();
   const parentElement = useRef(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const gsapContext = gsap.context(() => {
       timeline.current = gsap
-        .timeline({ defaults: { duration: 0.3, ease: 'power3.out' } })
+        .timeline({ defaults: { duration: 0.5, ease: 'power3.out' } })
         .fromTo(
-          parentElement.current,
-          { yPercent: -100, opacity: 0 },
-          { yPercent: 0, opacity: 1, delay: 3 }
+          '.hero_section__image',
+          { yPercent: -20, opacity: 0 },
+          { yPercent: 0, opacity: 1, delay: 0.2 }
+        )
+        .fromTo(
+          '.hero_section__heading',
+          { yPercent: -50, opacity: 0 },
+          { yPercent: 0, opacity: 1, delay: 2 }
+        )
+        .fromTo('hr', { scaleX: 0 }, { scaleX: 1 })
+        .fromTo(
+          '.hero_section__icon',
+          { yPercent: 30, opacity: 0 },
+          { yPercent: 0, opacity: 1 }
         );
     }, parentElement);
 
@@ -35,63 +36,36 @@ function HomeHeroSection() {
     };
   }, []);
 
-  useEffect(() => {
-    (async () => {
-      const fetchResult = await execute('/api/recipes/trending_recipes', {});
-      setResult(fetchResult);
-    })();
-  }, [execute]);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      changeSlidePosition(slides.current);
-    }, 5000);
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
-
-  function nextButtonHandler() {
-    changeSlidePosition(slides.current);
-  }
-
   return (
     <section
       ref={parentElement}
-      className={`relative z-[2] w-full h-fit mb-[5rem]`}>
-      <Container relative={true}>
-        {/* SLIDE CONTAINER */}
-        <div
-          className={`relative aspect-[1/1] lg:aspect-[3/1.5] w-screen lg:w-full h-auto flex flex-row bg-white overflow-hidden`}>
-          {/* SLIDES */}
-          {result.recipes.map((recipeObject, index) => {
-            return (
-              <HeroSlide
-                key={`hero_slide_${Math.random()}`}
-                image={recipeObject.strMealThumb}
-                heading={recipeObject.strMeal}
-                position={(index + 1).toString()}
-                slideRefHolder={slides.current}
-              />
-            );
-          })}
-        </div>
-        {/* CONTROLS */}
-        <div className={'absolute z-[3]  bottom-0 right-0'}>
-          <IconButton
-            action={(e) => {
-              nextButtonHandler();
-            }}>
-            <FaArrowRight
-              size={'2rem'}
-              className={
-                'aspect-[1/1] w-fit h-auto p-3 fill-white rounded-full bg-accent'
-              }
-            />
-          </IconButton>
-        </div>
-      </Container>
+      className={`relative z-[2] aspect-[16/9] w-full h-auto mb-[5rem]`}>
+      <Image
+        src={heroImage.src}
+        alt={''}
+        fill={true}
+        className={'hero_section__image brightness-50'}
+      />
+      <h1
+        className={
+          'hero_section__heading absolute top-[50%] left-[50%] translate-x-[-50%] mx-auto text-center text-white'
+        }>
+        We Sure Love Food!
+      </h1>
+      <hr
+        className={
+          'absolute top-[57%] left-[50%] translate-x-[-50%] w-[50%] border-white border-[2px]'
+        }
+      />
+      <Image
+        src={heroIcon.src}
+        alt={''}
+        width={100}
+        height={100}
+        className={
+          'hero_section__icon absolute top-[35%] left-[50%] translate-x-[-50%]'
+        }
+      />
     </section>
   );
 }
