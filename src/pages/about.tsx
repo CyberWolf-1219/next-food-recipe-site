@@ -125,7 +125,12 @@ function About() {
         />
       </Head>
       <header>
-        <Navigation />
+        <Navigation
+          position={'static'}
+          logoFill={'fill-accent'}
+          textColor={'text-black'}
+          avatarFill={'fill-accent'}
+        />
       </header>
       <main
         ref={parentElement}
