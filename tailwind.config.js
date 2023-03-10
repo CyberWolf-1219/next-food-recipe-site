@@ -21,8 +21,8 @@ module.exports = {
         accent: 'hsl(15, 100%, 59%)',
       },
       fontFamily: {
-        primary: 'Playfair Display',
-        secondary: 'Inter',
+        primary: 'Poppins',
+        secondary: 'Dancing Script',
       },
     },
   },
