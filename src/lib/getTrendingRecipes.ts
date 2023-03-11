@@ -17,5 +17,6 @@ export default async function getTrendingRecipes() {
     return recipes;
   } catch (error) {
     console.log(error);
+    return recipes;
   }
 }
