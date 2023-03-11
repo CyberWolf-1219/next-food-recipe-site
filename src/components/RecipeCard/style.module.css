@@ -1,0 +1,14 @@
+.recipe_card {
+  position: relative;
+}
+
+.recipe_card::before {
+  content: "";
+  inset: 0;
+  position: absolute;
+  background-image: url("/recipe_card_bg.png");
+  background-repeat: no-repeat;
+  background-size: 30%;
+  background-position: 110% 130%;
+  filter: opacity(0.1);
+}/*# sourceMappingURL=style.module.css.map */

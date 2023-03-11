@@ -6,6 +6,8 @@ import React, {
   useCallback,
   useState,
 } from 'react';
+import styleClasses from './style.module.css';
+
 import {
   FaCalendarDay,
   FaClock,
@@ -88,9 +90,7 @@ function RecipeCard(props: iRecipeCard) {
   return (
     <article
       ref={card}
-      className={
-        'recipe_card relative w-full h-fit shadow-sm shadow-black/20 rounded-md bg-white overflow-hidden'
-      }>
+      className={`${styleClasses.recipe_card} recipe_card relative w-full h-fit shadow-sm shadow-black/20 rounded-md bg-white overflow-hidden`}>
       {/* SAVE BUTTON */}
       {authStatus == 'authenticated' ? (
         <RecipeSaveBtn
