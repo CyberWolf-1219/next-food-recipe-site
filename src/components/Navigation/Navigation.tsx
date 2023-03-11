@@ -13,10 +13,10 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import gsap from 'gsap';
 
 interface iNavigation {
-  position: 'static' | 'relative' | 'absolute';
-  logoFill: 'fill-white' | 'fill-accent';
-  textColor: 'text-white' | 'text-black';
-  avatarFill: 'fill-white' | 'fill-accent';
+  position?: 'static' | 'relative' | 'absolute';
+  logoFill?: 'fill-white' | 'fill-accent';
+  textColor?: 'text-white' | 'text-black';
+  avatarFill?: 'fill-white' | 'fill-accent';
 }
 
 function Navigation({
