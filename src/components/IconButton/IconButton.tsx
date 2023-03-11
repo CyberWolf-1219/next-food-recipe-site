@@ -29,7 +29,7 @@ function IconButton(props: iIconButton) {
         heightOptions[props.height ?? 'fit']
       } px-3 py-2 rounded-md disabled:bg-gray-300 disabled:text-gray-400 disabled:shadow-transparent ${
         props.classes ?? null
-      }`}
+      } cursor-pointer`}
       disabled={props.disabled ?? false}>
       {props.children}
     </button>
