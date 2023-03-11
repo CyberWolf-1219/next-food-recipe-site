@@ -1,15 +1,17 @@
-import Container from '@/components/Container/Container';
-import Footer from '@/components/Footer/Footer';
+import { useContext, useEffect } from 'react';
+import Head from 'next/head';
+import { useSession } from 'next-auth/react';
+
+import { SavedRecipeContext } from '@/store/SavedRecipeContext';
+
+import Navigation from '@/components/Navigation/Navigation';
+import FeaturedRecipeSection from '@/components/FeaturedRecipeSection/FeaturedRecipeSection';
 import HomeHeroSection from '@/components/HomeHeroSection/HomeHeroSection';
 import HomeOptInSection from '@/components/HomeOptInSection/HomeOptInSection';
 import LatestRecipesSection from '@/components/LatestRecipesSection/LatestRecipesSection';
-import Navigation from '@/components/Navigation/Navigation';
 import PopularCategorySection from '@/components/PopularCategorySection/PopularCategorySection';
 import SuperDeliciousSection from '@/components/SuperDeliciousSection/SuperDeliciousSection';
-import { SavedRecipeContext } from '@/store/SavedRecipeContext';
-import { useSession } from 'next-auth/react';
-import Head from 'next/head';
-import { useContext, useEffect } from 'react';
+import Footer from '@/components/Footer/Footer';
 
 export default function Home() {
   const { data: authData, status: authStatus } = useSession();
@@ -48,9 +50,10 @@ export default function Home() {
       </header>
       <main className={''}>
         <PopularCategorySection />
+        <FeaturedRecipeSection />
         <SuperDeliciousSection />
-        <LatestRecipesSection />
         <HomeOptInSection />
+        <LatestRecipesSection />
       </main>
       <Footer />
     </>
