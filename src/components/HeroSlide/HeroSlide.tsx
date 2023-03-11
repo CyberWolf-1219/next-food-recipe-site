@@ -2,39 +2,73 @@ import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
 
 import styleClasses from './styles.module.css';
+import IconButton from '../IconButton/IconButton';
+import { GiCook } from 'react-icons/gi';
+import { useRouter } from 'next/router';
 
 interface iHeroSlide {
-  image: string;
-  position: string;
-  heading: string;
-  slideRefHolder: Array<HTMLDivElement>;
+  recipeCategory: string;
+  recipeID: string;
+  tags: Array<string>;
+  imageURI: string;
+  title: string;
 }
 
-function HeroSlide({ image, position, heading, slideRefHolder }: iHeroSlide) {
-  const slide = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    slideRefHolder[parseInt(position)] = slide.current!;
+function HeroSlide({ recipeCategory, recipeID, imageURI, title }: iHeroSlide) {
+  const router = useRouter();
 
-    return () => {};
-  }, [slideRefHolder, position]);
+  function viewRecipe(e: React.MouseEvent | React.TouchEvent) {
+    e.preventDefault();
+    router.replace(`/recipes/${recipeID}`);
+  }
 
   return (
-    <div
-      ref={slide}
-      data-position={position}
-      className={`${styleClasses.slide} absolute aspect-[1/1] lg:aspect-[3/1.5] w-screen lg:w-full h-auto transition-transform transform-gpu duration-[500ms] bg-white`}>
-      <Image
-        src={image}
-        alt={heading}
-        fill={true}
-        priority={true}
-        className={`aspect-[1/1] lg:aspect-[3/1.5] w-full h-auto object-cover filter saturate-[1.1] blur-[0.5px]`}
-      />
-      <h2
-        className={`absolute z-[2] left-0 bottom-4 w-fit h-fit px-2 py-1   text-white bg-accent/70`}>
-        {heading}
-      </h2>
-    </div>
+    <article
+      className={`${styleClasses.card} slide inline-block aspect-[4/3] min-w-[300px] h-auto bg-white rounded-md p-[1rem] shadow-sm`}>
+      {/* DECORATION */}
+      <div className={'w-full h-fit pointer-events-none'}>
+        <div
+          className={
+            'w-[100px] h-[20px] mx-auto bg-white shadow-[inset_0px_1px_3px_0px_black] rounded-full'
+          }></div>
+      </div>
+
+      {/* CATEGORY */}
+      <h4
+        className={'m-0 mt-[2rem] mb-[0.5rem] text-[1rem] pointer-events-none'}>
+        {recipeCategory}
+      </h4>
+
+      {/* TITLE */}
+      <h3
+        className={
+          'm-0 mb-[1rem] font-secondary leading-[1.5] truncate pointer-events-none'
+        }>
+        {title}
+      </h3>
+
+      {/* IMAGE */}
+      <div
+        className={'relative aspect-[4/3] w-full h-auto pointer-events-none'}>
+        <Image
+          src={imageURI}
+          alt={title}
+          fill={true}
+          className={'object-cover pointer-events-none'}
+        />
+      </div>
+
+      {/* BUTTON */}
+      <IconButton
+        width={'full'}
+        height={'fit'}
+        action={viewRecipe}
+        classes={
+          'mt-[1rem] flex flex-row items-center justify-center gap-[0.5rem] text-white bg-accent'
+        }>
+        <GiCook /> View Recipe
+      </IconButton>
+    </article>
   );
 }
 
