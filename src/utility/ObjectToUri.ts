@@ -1,4 +1,4 @@
-export default function objectToUri(parametersObj: RecipeRequestParameters) {
+export default function objectToUri(parametersObj: Object) {
   console.log('Object', parametersObj, '\n');
 
   let uri: Array<string> = [];
@@ -17,7 +17,7 @@ export default function objectToUri(parametersObj: RecipeRequestParameters) {
     else if (typeof value == 'object') {
       let encodedArray: Array<string> = [];
 
-      for (let item of value) {
+      for (let item of value as Array<any>) {
         let encodedItem = `${encodeURI(key)}=${encodeURI(item)}`;
         encodedArray.push(encodedItem);
       }

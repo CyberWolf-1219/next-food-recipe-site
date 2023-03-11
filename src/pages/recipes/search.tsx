@@ -6,6 +6,7 @@ import SearchPanel from '@/components/SearchPanel/SearchPanel';
 import SearchResultPanel from '@/components/SearchResultPanel/SearchResultPanel';
 import Head from 'next/head';
 import useFetch from '@/hooks/useFetch';
+import { Recipe } from '@/Types/RecipeApiTypes';
 
 function Search() {
   const execute = useFetch();

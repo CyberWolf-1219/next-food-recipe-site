@@ -1,4 +1,4 @@
-type Recipe = {
+export type Recipe = {
   idMeal: string;
   strMeal: string;
   strDrinkAlternate: null;
@@ -54,36 +54,36 @@ type Recipe = {
   dateModified: null;
 };
 
-type RandomRecipeResponse = {
+export type RandomRecipeResponse = {
   meals: Array<Recipe>;
 };
 
-type Category = {
+export type Category = {
   idCategory: string;
   strCategory: string;
   strCategoryThumb: string;
   strCategoryDescription?: string;
 };
 
-type CategoriesResponse = {
+export type CategoriesResponse = {
   categories: Array<Category>;
 };
 
-type RecipeSearchResponse = {
+export type RecipeSearchResponse = {
   meals: Array<Recipe>;
 };
 
-type CategoryRecipesResponse = {
+export type CategoryRecipesResponse = {
   meals: Array<Recipe>;
 };
 
-type RecipeDetailResponse = {
+export type RecipeDetailResponse = {
   meals: Array<Recipe>;
 };
 
-type Ingredient = { ingredient: string; amount: string };
+export type Ingredient = { ingredient: string; amount: string };
 
-type SavedRecipe = {
+export type SavedRecipe = {
   recipeId: string;
   recipeName: string;
   recipeThumb: string;

@@ -19,6 +19,7 @@ import breakInstructionsToSteps from '@/utility/breakInstructionsToSteps';
 
 import { gsap } from 'gsap/dist/gsap';
 import RecipeViewComments from '@/components/RecipeViewComments/RecipeViewComments';
+import { Ingredient, Recipe } from '@/Types/RecipeApiTypes';
 
 function RecipeView() {
   const router = useRouter();

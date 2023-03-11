@@ -1,3 +1,5 @@
+import { RecipeSearchResponse } from '@/Types/RecipeApiTypes';
+
 const ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 
 export default async function searchRecipes(query: string) {

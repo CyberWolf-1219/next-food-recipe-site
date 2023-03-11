@@ -1,3 +1,5 @@
+import { Recipe } from '@/Types/RecipeApiTypes';
+
 export default function extractIngredients(recipe: Recipe) {
   // GET OBJECT KEYS
   const keys = Object.keys(recipe);

@@ -1,3 +1,5 @@
+import { RecipeDetailResponse } from '@/Types/RecipeApiTypes';
+
 const ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
 
 export default async function getRecipeDetails(id: string) {
