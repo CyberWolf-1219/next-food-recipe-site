@@ -25,6 +25,11 @@ function RecipeViewHeader(props: iRecipeViewHeader) {
     }
   }, [savedRecipeContext, setSaved, props.id]);
 
+  function downloadRecipe(e: React.MouseEvent) {
+    e.preventDefault();
+    window.print();
+  }
+
   return (
     <section
       className={
@@ -75,6 +80,7 @@ function RecipeViewHeader(props: iRecipeViewHeader) {
 
           {/* DOWNLOAD BUTTON */}
           <IconButton
+            action={downloadRecipe}
             classes={
               'col-start-5 col-end-6 lg:col-start-11 lg:col-end-12 w-full h-full flex flex-row items-center justify-center'
             }>
@@ -97,7 +103,7 @@ function RecipeViewHeader(props: iRecipeViewHeader) {
             />
           ) : null}
         </div>
-        <hr />
+        <hr className={'mt-0'} />
       </Container>
     </section>
   );
