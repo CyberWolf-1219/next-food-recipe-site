@@ -6,6 +6,7 @@ import useFetch from '@/hooks/useFetch';
 
 import { gsap } from 'gsap/dist/gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { Recipe } from '@/Types/RecipeApiTypes';
 gsap.registerPlugin(ScrollTrigger);
 
 function LatestRecipesSection() {

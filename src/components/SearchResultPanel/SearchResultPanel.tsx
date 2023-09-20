@@ -4,6 +4,7 @@ import RecipeCard from '../RecipeCard/RecipeCard';
 
 import { gsap } from 'gsap/dist/gsap';
 import Link from 'next/link';
+import { Recipe } from '@/Types/RecipeApiTypes';
 
 interface iSearchResultPanel {
   resultsArray: Array<Recipe>;

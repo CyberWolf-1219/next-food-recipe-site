@@ -3,6 +3,7 @@ import useFetch from '@/hooks/useFetch';
 import HeroSlide from '../HeroSlide/HeroSlide';
 
 import styleClasses from './styles.module.css';
+import { Recipe } from '@/Types/RecipeApiTypes';
 
 let initial = true;
 

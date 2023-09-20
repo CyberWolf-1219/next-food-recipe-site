@@ -1,3 +1,4 @@
+import { SavedRecipe } from '@/Types/RecipeApiTypes';
 import useFetch from '@/hooks/useFetch';
 import { useSession } from 'next-auth/react';
 import React, {

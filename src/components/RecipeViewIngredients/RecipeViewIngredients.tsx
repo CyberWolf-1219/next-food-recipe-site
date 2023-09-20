@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Container from '../Container/Container';
+import { Ingredient } from '@/Types/RecipeApiTypes';
 
 interface iRecipeViewIngredients {
   ingredients: Array<Ingredient>;

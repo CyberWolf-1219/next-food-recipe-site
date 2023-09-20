@@ -8,6 +8,7 @@ import RecipeCard from '@/components/RecipeCard/RecipeCard';
 import useFetch from '@/hooks/useFetch';
 import Head from 'next/head';
 import Image from 'next/image';
+import { Recipe } from '@/Types/RecipeApiTypes';
 
 function Category() {
   const router = useRouter();

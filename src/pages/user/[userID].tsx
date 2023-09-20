@@ -13,6 +13,7 @@ import { authOptions } from '../api/auth/[...nextauth]';
 import { GetServerSidePropsContext } from 'next';
 import useFetch from '@/hooks/useFetch';
 import { SavedRecipeContext } from '@/store/SavedRecipeContext';
+import { Recipe } from '@/Types/RecipeApiTypes';
 
 function Favorites() {
   const savedRecipeContext = useContext(SavedRecipeContext);
